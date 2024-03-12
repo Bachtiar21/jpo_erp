@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
+	<meta name="author" content="AdminKit">
+	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="shortcut icon" href="../../static/img/icons/icon-48x48.png" />
+
+	<link rel="canonical" href="https://demo-basic.adminkit.io/" />
+
+	<title>JPO ERP</title>
+
+	<link href="../../static/css/app.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/css/style.css">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<div class="wrapper">
+		<!-- Sidebar Start -->
+		<div id="sidebar-container"></div>
+		<!-- Sidebar End -->
+
+		<div class="main">
+			<!-- Navbar Start -->
+			<nav class="navbar navbar-expand navbar-light navbar-bg">
+                <a class="sidebar-toggle js-sidebar-toggle">
+                    <i class="hamburger align-self-center"></i>
+                  </a>
+                          <div class="navbar-collapse collapse">
+                              <ul class="navbar-nav navbar-align">					
+                                  <li class="nav-item dropdown">
+                                      <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
+                          <i class="align-middle" data-feather="settings"></i>
+                        </a>
+                
+                                      <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
+                          <img src="https://bachtiar21.github.io/jpo_erp/static/img/avatars/avatar.jpg" class="avatar img-fluid rounded-circle me-1" /> <span class="text-dark" id="namaUser"></span>
+                        </a>
+                                      <div class="dropdown-menu dropdown-menu-end">
+                                          <a class="dropdown-item" href="../../profil.html">Lihat Profil</a>
+                                          <a class="dropdown-item" id="logoutButton">Log out</a>
+                                      </div>
+                                  </li>
+                              </ul>
+                          </div>
+			</nav>
+			<!-- Navbar End -->
+
+            <!-- Content Start -->
+            <main class="content">
+                <div class="container-fluid p-0">
+                <h5 class="right-aligned" style="float: right">
+                    <a href="../../dashboard.html">Home</a> / <a href="../inventory.html">Inventory</a> / Transfer
+                </h5>
+                <h1 class="h3 mb-3"><b>Transfer View</b></h1>
+                    <div class="col-md-6 mb-3">
+                        <div class="d-flex justify-content-start">
+                            <a href="inventory_tf_in_create.html"
+                            type="button"
+                            id="createButton"
+                            class="btn btn-info me-2">
+                            <i class="align-middle" data-feather="list"></i>
+                                Tambah Data
+                        </a>
+                        </div>
+                    </div>
+                    <!-- Menu Pilihan Transfer Start -->
+                    <div class="card">
+                        <div class="card-body">
+                                <select class="form-select" id="selectMenuTransfer" aria-label="Pilih Opsi">
+                                    <option selected>Pilih Menu Transfer</option>
+                                    <option value="in">In</option>
+                                    <option value="out">Out</option>
+                                </select>
+                        </div>
+                    </div>
+                    <!-- Menu Pilihan Transfer End -->
+                    <!-- Content Transer In Start -->
+                    <div id="transferMenuIn">
+                        <div class="row justify-content-center">
+                            <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                <div class="row no-gutters" style="height: 40px">
+                                    <h1 class="h3 mt-2">Tabel Transfer In</h1>
+                                    <div
+                                    class="col-md-3"
+                                    style="
+                                        position: absolute;
+                                        top: 0;
+                                        right: 0;
+                                        width: 15%;
+                                        margin-top: 20px;
+                                    ">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="searchInputIn"
+                                        placeholder="Cari" />
+                                    </div>
+                                </div>
+
+                                <hr />
+                                <div class="table-container">
+                                    <table
+                                    class="table table-striped"
+                                    style="width: 100%">
+                                    <thead>
+                                        <tr style="text-align: center; vertical-align: middle">
+                                        <th hidden></th>
+                                        <th>Nomor DO</th>
+                                        <th>From</th>
+                                        <th>Gudang</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                        </tr>
+                                    </thead>
+
+                                    <!-- Fetch Data Start -->
+                                    <tbody id="tablebodyIn"></tbody>
+                                    <!-- Fetch Data End -->
+                                    
+                                    </table>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-6">
+                                    <div class="pagination">
+                                        <button
+                                        id="prevPageBtnTfIn"
+                                        class="btn btn-primary">
+                                        Previous
+                                        </button>
+                                        <span id="currentPageTfIn" class="mx-2">Halaman 1</span>
+                                        <button
+                                        id="nextPageBtnTfIn"
+                                        class="btn btn-primary">
+                                        Next
+                                        </button>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Content Transfer In End -->
+
+                    <!-- Content Transfer Out Start -->
+                    <div id="transferMenuOut" hidden>
+                        <div class="row justify-content-center">
+                            <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                <div class="row no-gutters" style="height: 40px">
+                                    <h1 class="h3 mt-2">Tabel Transfer Out</h1>
+                                    <div
+                                    class="col-md-3"
+                                    style="
+                                        position: absolute;
+                                        top: 0;
+                                        right: 0;
+                                        width: 15%;
+                                        margin-top: 20px;
+                                    ">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="searchInputOut"
+                                        placeholder="Cari" />
+                                    </div>
+                                </div>
+
+                                <hr />
+                                <div class="table-container">
+                                    <table
+                                    class="table table-striped"
+                                    style="width: 100%">
+                                    <thead>
+                                        <tr style="text-align: center; vertical-align: middle">
+                                        <th hidden></th>
+                                        <th>Nomor DO</th>
+                                        <th>From</th>
+                                        <th>Gudang</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                        </tr>
+                                    </thead>
+
+                                    <!-- Fetch Data Start -->
+                                    <tbody id="tablebodyOut">
+                                        <tr>
+                                            <td hidden></td>
+                                            <td>Test</td>
+                                            <td>Test</td>
+                                            <td>Test</td>
+                                            <td>Test</td>
+                                            <td>
+                                                <a href="inventory_tf_out_edit.html" type="button" class="btn btn-warning" data-stcall-id="${values.id}">Update</a>    
+                                                <a href="inventory_tf_out_detail.html" type="button" class="btn btn-info" data-stcall-id="${values.id}">Detail</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <!-- Fetch Data End -->
+                                    
+                                    </table>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-6">
+                                    <div class="pagination">
+                                        <button
+                                        id="prevPageBtn"
+                                        class="btn btn-primary">
+                                        Previous
+                                        </button>
+                                        <span id="currentPage" class="mx-2">Halaman 1</span>
+                                        <button
+                                        id="nextPageBtn"
+                                        class="btn btn-primary">
+                                        Next
+                                        </button>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Content Transfer Out End -->
+
+                </div>
+            </main>
+            <!-- Content End -->
+
+			<!-- Footer Start -->
+			<footer class="footer">
+				<div class="container-fluid">
+					<div class="row text-muted">
+						<div class="col-6 text-start">
+							<p class="mb-0">
+								<a class="text-muted" href="#" target="_blank"><strong>JPO</strong></a> - <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>ERP</strong></a>								&copy;
+							</p>
+						</div>
+					</div>
+				</div>
+			</footer>
+            <!-- Footer End -->
+		</div>
+	</div>
+
+    <!-- Spinner Start -->
+	<div class="loader"></div>
+	<!-- Spinner End -->
+	
+	<script src="../../static/js/style/spinner.js" defer></script>
+    <script src="../../static/js/controller/logout.js" type="module"></script>
+    <script src="../../static/js/store/inventory_tf_view.js" type="module"></script>
+    <script src="../../static/js/navbar.js" type="module"></script>
+	<script src="../../static/js/app.js"></script>
+	<script src="../../static/theme/bar/sidebar.js" type="module"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+</body>
+
+</html>
