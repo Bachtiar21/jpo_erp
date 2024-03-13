@@ -40,6 +40,8 @@ export let UrlGetAllTransferIn = "api/auth/inventory/transfer-in/i/";
 export let UrlGetWarehouseByToken = "api/auth/warehouses-list";
 export let UrlGetAllStock = "api/auth/inventory/stocks";
 export let UrlGetAllSalesOrder = "api/auth/sales-orders";
+export let UrlGetAllSKU = "api/auth/sales-order/all-sku/";
+export let UrlGetDataBySKU = "/api/auth/sales-order";
 
 // Endpoint Get By Id
 export let UrlGetConvectionById = "api/auth/convection";

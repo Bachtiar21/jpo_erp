@@ -1,0 +1,44 @@
+import { BaseUrl, UrlGetAllSKU, requestOptionsGet } from "../controller/template.js";
+
+const GetAllSKU = BaseUrl + UrlGetAllSKU;
+
+// Fetch Data Kontak di Dropdown
+const dropdownVendor = document.getElementById("listSKU");
+// Fetch data dari API
+fetch(GetAllSKU, requestOptionsGet)
+    .then((response) => response.json())
+    .then((data) => {
+        data.data.forEach((sku) => {
+            const option = document.createElement("option");
+            option.value = sku;
+            option.textContent = sku;
+            dropdownVendor.appendChild(option);
+        });
+    })
+    .catch((error) => {
+        console.error('Error fetching SKU:', error);
+});
+
+
+// Fetch Data SKU di Dropdown
+const dropdownSKU = document.getElementById("listSKU");
+
+dropdownSKU.addEventListener("change", function() {
+    const selectedSKU = this.value;
+    
+    // Fetch data dari API sesuai SKU yang dipilih
+    fetch(`http://localhost:8000/api/auth/sales-order/${selectedSKU}/sku`, requestOptionsGet)
+        .then((response) => response.json())
+        .then((data) => {
+            // Mengisi formulir dengan data yang diterima
+            const skuData = data.data[0]; // Ambil data pertama dari respons
+            document.getElementById("nomorDoInput").value = skuData.no_do;
+            document.getElementById("listWarehouse").value = skuData.to;
+            document.getElementById("listVendor").value = skuData.from;
+            document.getElementById("stokInput").value = skuData.stock_rev;
+            document.getElementById("hargaJualInput").value = skuData.price;
+        })
+        .catch((error) => {
+            console.error('Error fetching SKU:', error);
+        });
+});
