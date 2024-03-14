@@ -1,18 +1,13 @@
-import { BaseUrl, tokenGithub, UrlPostPurchaseOrder, UrlGetAllContact, UrlGetWarehouseByToken, requestOptionsGet } from "../controller/template.js";
-import { CihuyFileUploadGithub } from "https://c-craftjs.github.io/uploader/github.js";
+import { BaseUrl, UrlPostPurchaseOrder, UrlGetAllContact, UrlGetWarehouseByToken, requestOptionsGet } from "../controller/template.js";
 import { token } from "../controller/cookies.js";
 
 const PostPurchaseOrder = BaseUrl + UrlPostPurchaseOrder;
 const AllContact = BaseUrl + UrlGetAllContact;
 const AllWarehouseByToken = BaseUrl + UrlGetWarehouseByToken;
 
-// Function to add purchase order data
 async function addPreOrder(formData) {
     const fotoInput = document.getElementById('fotoInput').files[0];
     const fileName = fotoInput.name;
-    const githubToken = tokenGithub;
-    const githubRepoOwner = "Bachtiar21";
-    const githubRepoName = "img_jpo";
     if (!fotoInput) {
         Swal.fire({
             icon: 'warning',
@@ -23,44 +18,51 @@ async function addPreOrder(formData) {
     }
 
     try {
-        const response = await CihuyFileUploadGithub(fotoInput, fileName, githubToken, githubRepoOwner, githubRepoName)
-        formData.attachment_image = response.content.download_url; // Assigning GitHub image URL to attachment_image field
+        const formDataObj = new FormData();
+        formDataObj.append('contact_id', formData.contact_id);
+        formDataObj.append('warehouse_id', formData.warehouse_id);
+        formDataObj.append('date', formData.date);
+        formDataObj.append('nama_barang', formData.nama_barang);
+        formDataObj.append('grade', formData.grade);
+        formDataObj.append('sku', formData.sku);
+        formDataObj.append('description', formData.description);
+        formDataObj.append('ketebalan', formData.ketebalan);
+        formDataObj.append('setting', formData.setting);
+        formDataObj.append('gramasi', formData.gramasi);
+        formDataObj.append('stock', formData.stock);
+        formDataObj.append('price', formData.price);
+        formDataObj.append('stock_rib', formData.stock_rib);
+        formDataObj.append('attachment_image', fotoInput);
 
-        // Menggunakan postData untuk mengirimkan data formulir
-        fetch(PostPurchaseOrder, {
+        console.log('Data formData sebelum dikirim:', formDataObj);
+
+        const response = await fetch(PostPurchaseOrder, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json', // Pastikan menentukan Content-Type
             },
-            body: JSON.stringify(formData) // Mengirim postData yang berisi data formulir yang benar
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.data) {
-                // Display success SweetAlert
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'Purchase Order Data Successfully Added!',
-                    icon: 'success',
-                    timer: 1500,
-                    showConfirmButton: false
-                }).then(() => {
-                    // Refresh the page after successful addition
-                    window.location.href = 'purchase_po_view.html';
-                });
-            } else {
-                // Display error SweetAlert
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Failed to Add Purchase Order Data!',
-                });
-            }
-        })
-        .catch(error => {
-            console.error("Error while adding purchase order data:", error);
+            body: formDataObj,
         });
+        const responseData = await response.json();
+        if (responseData && responseData.data) {
+            // Handle success
+            Swal.fire({
+                title: 'Success!',
+                text: 'Purchase Order Data Successfully Added!',
+                icon: 'success',
+                timer: 1500,
+                showConfirmButton: false
+            }).then(() => {
+                window.location.href = 'purchase_po_view.html';
+            });
+        } else {
+            // Handle failure
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Failed to Add Purchase Order Data!',
+            });
+        }
     } catch (error) {
         console.error("Error uploading image and adding purchase order data:", error);
     }
@@ -110,6 +112,7 @@ submitButton.addEventListener('click', () => {
     const skuInput = document.getElementById('skuInput').value;
     const deskripsiInput = document.getElementById('deskripsiInput').value;
     const stokInput = document.getElementById('stokInput').value;
+    const stokRibInput = document.getElementById('stokRibInput').value;
     const hargaBeliInput = document.getElementById('hargaBeliInput').value;
     const listVendor = document.getElementById('listVendor').value;
     const listWarehouse = document.getElementById('listWarehouse').value;
@@ -118,7 +121,7 @@ submitButton.addEventListener('click', () => {
     const gramasiInput = document.getElementById('gramasiInput').value;
     
     // Check if any of the fields is empty
-    if (!tanggalInput || !namaBarangInput || !gradeInput || !skuInput || !deskripsiInput || !stokInput 
+    if (!tanggalInput || !namaBarangInput || !gradeInput || !skuInput || !deskripsiInput || !stokInput ||!stokRibInput
         || !hargaBeliInput || !listVendor || !listWarehouse || !ketebalanInput || !settingInput) {
         Swal.fire({
             icon: 'warning',
@@ -136,7 +139,7 @@ submitButton.addEventListener('click', () => {
         sku: skuInput,
         description: deskripsiInput,
         stock: stokInput,
-        stock_rib: stokInput,
+        stock_rib: stokRibInput,
         price: hargaBeliInput,
         contact_id: listVendor,
         warehouse_id: listWarehouse,
