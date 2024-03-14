@@ -71,7 +71,7 @@ async function addTransferIn(formData) {
 
         console.log('Data formData sebelum dikirim:', formDataObj);
 
-        const response = await fetch(PostPurchaseOrder, {
+        const response = await fetch(PostTransferIn, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
