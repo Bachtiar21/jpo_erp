@@ -40,5 +40,5 @@ dropdownSKU.addEventListener("change", function() {
         })
         .catch((error) => {
             console.error('Error fetching SKU:', error);
-        });
+    });
 });
