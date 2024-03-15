@@ -232,21 +232,21 @@ fetch(AllTransferOut, requestOptionsGet)
 	.then((data) => {
 		let tableData = "";
 		data.data.map((values) => {
-			let dataContact = "";
-			let dataWarehouse = "";
+			let dataContactOut = "";
+			let dataWarehouseOut = "";
                 // Untuk Fetch Data Contact
                 fetch(ContactById + `/${values.contact_id}`, requestOptionsGet)
                     .then(response => response.json())
                     .then(contactData => {
-                        dataContact = contactData.data.name;
-                        document.getElementById(`contactCell${values.id}`).textContent = dataContact;
+                        dataContactOut = contactData.data.name;
+                        document.getElementById(`contactCellOut${values.id}`).textContent = dataContactOut;
                 });
 				// Untuk Fetch Data Warehouse
                 fetch(WarehouseByToken + `/${values.warehouse_id}`, requestOptionsGet)
                     .then(response => response.json())
                     .then(warehouseData => {
-                        dataWarehouse = warehouseData.data.name;
-                        document.getElementById(`warehouseCell${values.id}`).textContent = dataWarehouse;
+                        dataWarehouseOut = warehouseData.data.name;
+                        document.getElementById(`warehouseCellOut${values.id}`).textContent = dataWarehouseOut;
                 });
 				tableData += `
                         <tr>
@@ -254,11 +254,11 @@ fetch(AllTransferOut, requestOptionsGet)
                         <td style="text-align: center; vertical-align: middle">
                             <p class="fw-normal mb-1">${values.no_do}</p>
                         </td>
-						<td id="contactCell${values.id}" style="text-align: center; vertical-align: middle">
+						<td id="contactCellOut${values.id}" style="text-align: center; vertical-align: middle">
 							<!-- Nama contact akan ditampilkan di sini -->
-						</td>
-						<td id="warehouseCell${values.id}" style="text-align: center; vertical-align: middle">
-							<!-- Nama warehouse akan ditampilkan di sini -->
+						</td>	
+						<td id="warehouseCellOut${values.id}" style="text-align: center; vertical-align: middle">
+							<!-- Nama contact akan ditampilkan di sini -->
 						</td>
                         <td style="text-align: center; vertical-align: middle">
                             <p class="fw-normal mb-1">${getBadgePO(values.status)}</p>
