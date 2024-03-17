@@ -79,6 +79,8 @@ export let UrlPostContact = "api/auth/contact";
 export let UrlPostPurchaseOrder = "api/auth/purchase-order";
 export let UrlPostFotoGithub = "https://api.github.com/repos/Bachtiar21/jpo_erp_adm/contents/static/fotoinput";
 export let UrlPostTransferIn = "api/auth/inventory/transfer-in";
+export let UrlPostSalesOrder = "api/auth/sales-order";
+export let UrlPostStock = "api/auth/purchase-order";
 
 // Endpoint Put
 export let UrlPutStore = "api/auth/store/u";
@@ -89,6 +91,9 @@ export let UrlPutBank = "api/auth/bank/u";
 export let UrlPutToken = "api/auth/token/u";
 export let UrlPutContact = "api/auth/contact/u";
 export let UrlPutPurchaseOrder = "api/auth/purchase-order/u";
+export let UrlPutTransferIn = "api/auth/inventory/transfer-in/u";
+export let UrlReceivedTransferIn = "api/auth/inventory/transfer-in";
+export let UrlPutSalesOrder = "api/auth/sales-order/u";
 
 // Endpoint Delete
 export let UrlDeleteUser = "api/auth/user/d";
@@ -99,3 +104,6 @@ export let UrlDeleteBank = "api/auth/bank/d";
 export let UrlDeleteToken = "api/auth/token/d";
 export let UrlDeleteContact = "api/auth/contact/d";
 export let UrlDeletePurchaseOrder = "api/auth/purchase-order/d";
+export let UrlDeleteTransferIn = "api/auth/purchase-order/d";
+export let UrlDeleteSalesOrder = "api/auth/inventory/d";
+export let UrlDeleteStock = "api/auth/inventory/stock/d";
