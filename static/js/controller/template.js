@@ -57,6 +57,7 @@ export let UrlGetInventoryById = "api/auth/inventory";
 export let UrlGetTransferInById = "api/auth/inventory/transfer-in";
 export let UrlGetStockAllById = "api/auth/inventory/stock";
 export let UrlGetWarehouseByIdByToken = "api/auth/warehouse";
+export let UrlGetSalesOrderById = "api/auth/sales-order";
 
 // Endpoint Post
 export let UrlPostLogin = "api/auth/login";

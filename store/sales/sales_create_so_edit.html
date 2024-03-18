@@ -69,41 +69,55 @@
                         <form>
                             <div class="card">
                             <div class="card-body">
-                                <!-- Inputan Nomor DO -->
-                                <h5 class="card-title">Nomor DO</h5>
+                                <!-- Inputan Nomor SO -->
+                                <h5 class="card-title">Nomor SO</h5>
                                 <input
                                 type="text"
                                 class="form-control"
-                                id="nomorDoInput"
-                                name="nomorDoInput"
+                                id="nomorSoInput"
+                                name="nomorSoInput"
                                 disabled/>
 
                                 <div class="row mt-1">
                                     <div class="col-md-6">
                                         <!-- Inputan From -->
                                         <h5 class="card-title mt-2">From</h5>
-                                        <select class="form-select" id="listVendor" aria-label="Pilih Opsi" disabled>
+                                        <!-- <select class="form-select" id="listVendor" aria-label="Pilih Opsi" disabled>
                                             <option selected>Pilih Vendor</option>
-                                        </select>
+                                        </select> -->
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="listVendor"
+                                            name="listVendor"
+                                            disabled
+                                        />
                                     </div>
                                     <div class="col-md-6">
                                         <!-- Inputan To -->
                                         <h5 class="card-title mt-2">To</h5>
-                                        <select class="form-select" id="listWarehouse" aria-label="Pilih Opsi" disabled>
+                                        <!-- <select class="form-select" id="listWarehouse" aria-label="Pilih Opsi" disabled>
                                             <option selected>Pilih Warehouse</option>
-                                        </select>
+                                        </select> -->
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="listWarehouse"
+                                            name="listWarehouse"
+                                            disabled
+                                        />
                                     </div>
                                 </div>
 
                                 <div class="row mt-1">
                                     <div class="col-md-6">
-                                        <!-- Inputan Grade -->
-                                        <h5 class="card-title mt-2">Grade</h5>
+                                        <!-- Inputan SKU -->
+                                        <h5 class="card-title mt-2">SKU</h5>
                                         <input
                                             type="text"
                                             class="form-control"
-                                            id="gradeInput"
-                                            name="gradeInput"
+                                            id="skuInput"
+                                            name="skuInput"
                                             disabled/>
                                     </div>
                                     <div class="col-md-6">
@@ -135,6 +149,12 @@
                                 id="hargaJualInput"
                                 name="hargaJualInput"
                                 required/>
+
+                                <!-- Inputan Broker -->
+                                <h5 class="card-title mt-2">Broker</h5>
+                                <select class="form-select" id="listBroker" aria-label="Pilih Opsi">
+                                    <option selected>Pilih Broker</option>
+                                </select>
 
                                 <!-- Inputan Broker Fee -->
                                 <h5 class="card-title mt-2">Broker Fee</h5>
@@ -192,7 +212,7 @@
     <!-- Spinner Start -->
 	<div class="loader"></div>
 	<!-- Spinner End -->
-	
+	<script src="../../static/js/store/sales_create_so_edit.js" type="module"></script>
 	<script src="../../static/js/style/spinner.js" defer></script>
     <script src="../../static/js/controller/logout.js" type="module"></script>
     <script src="../../static/js/navbar.js" type="module"></script>
