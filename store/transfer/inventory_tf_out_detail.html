@@ -89,13 +89,38 @@
                                 <h5 class="card-title mt-2">Spesifikasi</h5>
                                 <textarea class="form-control" name="spesifikasiInput" id="spesifikasiInput" 
                                 cols="30" rows="3" disabled></textarea>
-                                <!-- Inputan Stok (Roll & Kg) -->
-                                <h5 class="card-title mt-2">Stok (Roll & Kg)</h5>
+
+                                <!-- Inputan Stok Roll & Kg -->
+                                <div class="row mt-1">
+                                    <div class="col-md-6">
+                                        <h5 class="card-title mt-2">Stok Roll</h5>
+                                        <input
+                                        type="number"
+                                        class="form-control"
+                                        id="stokRoll"
+                                        name="stokRoll"
+                                        disabled
+                                        />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h5 class="card-title mt-2">Stok Kg</h5>
+                                        <input
+                                        type="number"
+                                        class="form-control"
+                                        id="stokKg"
+                                        name="stokKg"
+                                        disabled
+                                        />
+                                    </div>
+                                </div>
+
+                                <!-- Inputan Stok Rib -->
+                                <h5 class="card-title mt-2">Stok Rib</h5>
                                 <input
                                 type="number"
                                 class="form-control"
-                                id="stokInput"
-                                name="stokInput"
+                                id="stokRib"
+                                name="stokRib"
                                 disabled/>
 
                                 <div class="row mt-1">
@@ -165,43 +190,18 @@
                                 <h5 class="card-title mt-2">Deskripsi</h5>
                                 <textarea class="form-control" name="deskripsiInput" id="deskripsiInput" 
                                 cols="30" rows="3" disabled></textarea>
-                                
-                                <!-- Inputan Href to SO -->
-                                <h5 class="card-title mt-2">Href to SO</h5>
-                                <input
-                                type="text"
-                                class="form-control"
-                                id="inputHrefSO"
-                                name="inputHrefSO"
-                                disabled/>
-
-                                <!-- Inputan Status Transfer -->
-                                <h5 class="card-title mt-2">Status Transfer</h5>
-                                <select class="form-select" id="listStatus" aria-label="Pilih Opsi" disabled>
-                                    <option selected>Pilih Status</option>
-                                    <option value="draft">Draft</option>
-                                    <option value="sent">Sent</option>
-                                    <option value="done">Done</option>
-                                </select>
 
                                 <!-- Button Submit -->
-                                <div
-                                style="
-                                    position: relative;
-                                    text-align: right;
-                                    margin-top: 20px;
-                                ">
-                                <button
-                                    type="button"
-                                    class="btn btn-primary"
-                                    id="submitButton">
-                                    Print
-                                </button>
-                                <a href="inventory_tf_view.html"
-                                    type="button"
-                                    class="btn btn-info">
-                                    Cancel
-                                </a>
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+                                    <div>
+                                        <button type="button" class="btn btn-info" id="draftButton">Draft</button>
+                                        <button type="button" class="btn btn-warning" id="sentButton">Sent</button>
+                                        <button type="button" class="btn btn-success" id="doneButton">Done</button>
+                                    </div>
+                                    <div>
+                                        <a href="inventory_tf_view.html" type="button" class="btn btn-primary">Close</a>
+                                        <button type="button" class="btn btn-info" id="printButton">Print</but>
+                                    </div>
                                 </div>
                             </div>
                             </div>
@@ -231,7 +231,7 @@
     <!-- Spinner Start -->
 	<div class="loader"></div>
 	<!-- Spinner End -->
-	
+	<script src="../../static/js/store/inventory_tf_out_detail.js" type="module"></script>
 	<script src="../../static/js/style/spinner.js" defer></script>
     <script src="../../static/js/controller/logout.js" type="module"></script>
     <script src="../../static/js/navbar.js" type="module"></script>

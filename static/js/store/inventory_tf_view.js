@@ -72,6 +72,9 @@ fetch(AllTransferIn, requestOptionsGet)
                         <td style="text-align: center; vertical-align: middle">
                             <p class="fw-normal mb-1">${values.no_do}</p>
                         </td>
+						<td style="text-align: center; vertical-align: middle">
+                            <p class="fw-normal mb-1">${values.no_po}</p>
+                        </td>
 						<td id="contactCell${values.id}" style="text-align: center; vertical-align: middle">
 							<!-- Nama contact akan ditampilkan di sini -->
 						</td>
@@ -254,6 +257,9 @@ fetch(AllTransferOut, requestOptionsGet)
                         <td style="text-align: center; vertical-align: middle">
                             <p class="fw-normal mb-1">${values.no_do}</p>
                         </td>
+						<td style="text-align: center; vertical-align: middle">
+                            <p class="fw-normal mb-1">${values.no_so}</p>
+                        </td>
 						<td id="contactCellOut${values.id}" style="text-align: center; vertical-align: middle">
 							<!-- Nama contact akan ditampilkan di sini -->
 						</td>	
@@ -273,6 +279,24 @@ fetch(AllTransferOut, requestOptionsGet)
 
 		displayData(halamannow);
 		updatePagination();
+
+		// Menambahkan event listener untuk button "Detail Data"
+		const detailTfIn = document.querySelectorAll('.btn-info');
+		detailTfIn.forEach(button => {
+			button.addEventListener('click', (event) => {
+				const id = event.target.getAttribute('data-tfin-id');
+				window.location.href = `inventory_tf_out_detail.html?id=${id}`;
+			});
+		});
+
+		// Menambahkan event listener untuk button "Update Data"
+		const updateTfIn = document.querySelectorAll('.btn-warning');
+		updateTfIn.forEach(button => {
+			button.addEventListener('click', (event) => {
+				const id = event.target.getAttribute('data-tfin-id');
+				window.location.href = `inventory_tf_out_edit.html?id=${id}`;
+			});
+		});
 		
 	})
 	.catch(error => {

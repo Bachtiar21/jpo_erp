@@ -15,23 +15,11 @@ fetch(GetStockAllById, requestOptionsGet)
         // Populate form fields with data
         document.getElementById('namaBarangInput').value = stockData.nama_barang;
         document.getElementById('spesifikasiInput').value = `Ketebalan: ${stockData.ketebalan}, Setting: ${stockData.setting}, Gramasi: ${stockData.gramasi}`;
-        document.getElementById('stokInput').value = `Stock Rev : ${stockData.stock_roll_rev} Roll ${stockData.stock_kg_rev} Kg, Stock Rib Rev : ${stockData.stock_rib_rev}`;
         document.getElementById('gradeInput').value = stockData.grade;
         document.getElementById('hargaJualInput').value = stockData.price;
-        document.getElementById('skuInput').value = stockData.sku;
-        document.getElementById('tanggalInput').value = stockData.date;
         document.getElementById('deskripsiInput').value = stockData.description;
-        document.getElementById('inputHrefPO').value = stockData.no_po;
     } else {
         console.error('Data not found');
     }
 })
 .catch(error => console.error('Error:', error));
-
-// Menambahkan event listener untuk button "Update Data"
-const updateStockAllButtons = document.querySelectorAll('.btn-primary');
-updateStockAllButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        window.location.href = `inventory_stc_all_edit.html?id=${id}`;
-    });
-});

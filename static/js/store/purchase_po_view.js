@@ -55,7 +55,8 @@ CihuyDomReady(() => {
                                 <p class="fw-normal mb-1">${getBadgePO(values.status)}</p>
                             </td>
                             <td style="text-align: center; vertical-align: middle">
-                                <button type="button" class="btn btn-info" data-po-id="${values.id}">Detail</button>	
+                                <button type="button" class="btn btn-info" data-po-id="${values.id}">Detail</button>
+                                <button type="button" class="btn btn-warning" data-po-id="${values.id}">Edit</button>	
                             </td>
                         </tr>`;
             });
@@ -70,6 +71,15 @@ CihuyDomReady(() => {
                 button.addEventListener('click', (event) => {
                     const id = event.target.getAttribute('data-po-id');
                     window.location.href = `purchase_po_detail.html?id=${id}`;
+                });
+            });
+
+            // Menambahkan event listener untuk button "Update Data"
+            const updatePOButtons = document.querySelectorAll('.btn-warning');
+            updatePOButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const id = event.target.getAttribute('data-po-id');
+                    window.location.href = `purchase_create_po_edit.html?id=${id}`;
                 });
             });
             

@@ -84,33 +84,67 @@
                                 class="form-control"
                                 id="namaBarangInput"
                                 name="namaBarangInput"/>
+
                                 <!-- Inputan Spesifikasi -->
                                 <h5 class="card-title mt-2">Spesifikasi</h5>
                                 <textarea class="form-control" name="spesifikasiInput" id="spesifikasiInput" 
                                 cols="30" rows="3"></textarea>
-                                <!-- Inputan Stok (Roll & Kg) -->
-                                <h5 class="card-title mt-2">Stok (Roll & Kg)</h5>
+
+                                <!-- Inputan Stok (Roll) -->
+                                <h5 class="card-title mt-2">Stok (Roll)</h5>
                                 <input
                                 type="number"
                                 class="form-control"
-                                id="stokInput"
-                                name="stokInput"
+                                id="stokRoll"
+                                name="stokRoll"
+                                />
+
+                                <!-- Inputan Stok (Kg) -->
+                                <h5 class="card-title mt-2">Stok (Kg)</h5>
+                                <input
+                                type="number"
+                                class="form-control"
+                                id="stokKg"
+                                name="stokKg"
+                                />
+
+                                <!-- Inputan Stok Rib (Kg) -->
+                                <h5 class="card-title mt-2">Stok Rib (Kg)</h5>
+                                <input
+                                type="number"
+                                class="form-control"
+                                id="stokRib"
+                                name="stokRib"
                                 />
 
                                 <div class="row mt-1">
                                     <div class="col-md-6">
                                         <!-- Inputan From -->
                                         <h5 class="card-title mt-2">From</h5>
-                                        <select class="form-select" id="listVendor" aria-label="Pilih Opsi" disabled>
+                                        <!-- <select class="form-select" id="listVendor" aria-label="Pilih Opsi" disabled>
                                             <option selected>Pilih Vendor</option>
-                                        </select>
+                                        </select> -->
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="listVendor"
+                                            name="listVendor"
+                                            disabled
+                                        />
                                     </div>
                                     <div class="col-md-6">
                                         <!-- Inputan To -->
                                         <h5 class="card-title mt-2">To</h5>
-                                        <select class="form-select" id="listWarehouse" aria-label="Pilih Opsi" disabled>
+                                        <!-- <select class="form-select" id="listWarehouse" aria-label="Pilih Opsi" disabled>
                                             <option selected>Pilih Warehouse</option>
-                                        </select>
+                                        </select> -->
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="listWarehouse"
+                                            name="listWarehouse"
+                                            disabled
+                                        />
                                     </div>
                                 </div>
 
@@ -164,43 +198,18 @@
                                 <h5 class="card-title mt-2">Deskripsi</h5>
                                 <textarea class="form-control" name="deskripsiInput" id="deskripsiInput" 
                                 cols="30" rows="3"></textarea>
-                                
-                                <!-- Inputan Href to PO -->
-                                <h5 class="card-title mt-2">Href to PO</h5>
-                                <input
-                                type="text"
-                                class="form-control"
-                                id="inputHrefPO"
-                                name="inputHrefPO"
-                                disabled/>
 
-                                <!-- Inputan Status Transfer -->
-                                <h5 class="card-title mt-2">Status Transfer</h5>
-                                <select class="form-select" id="listStatus" aria-label="Pilih Opsi">
-                                    <option selected>Pilih Status</option>
-                                    <option value="draft">Draft</option>
-                                    <option value="received">Received</option>
-                                    <option value="done">Done</option>
-                                </select>
-
-                                <!-- Button Submit -->
-                                <div
-                                style="
-                                    position: relative;
-                                    text-align: right;
-                                    margin-top: 20px;
-                                ">
-                                <a  href="inventory_tf_view.html"
-                                    type="button"
-                                    class="btn btn-primary">
-                                    Cancel
-                                </a>
-                                <button
-                                    type="button"
-                                    class="btn btn-info"
-                                    id="cancelTransferInButton">
-                                    Cancel Transfer In
-                            </button>
+                                <!-- Button -->
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+                                    <div>
+                                        <button type="button" class="btn btn-info" id="draftButton">Draft</button>
+                                        <button type="button" class="btn btn-warning" id="receivedButton">Received</button>
+                                        <button type="button" class="btn btn-success" id="doneButton">Done</button>
+                                    </div>
+                                    <div>
+                                        <a href="inventory_tf_view.html" type="button" class="btn btn-primary">Close</a>
+                                        <button type="button" class="btn btn-info" id="cancelTransferInButton">Cancel Transfer In</button>
+                                    </div>
                                 </div>
                             </div>
                             </div>

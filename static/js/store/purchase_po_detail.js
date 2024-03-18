@@ -46,7 +46,7 @@ fetch(GetByIdPurchaseOrder, requestOptionsGet)
             document.getElementById("skuInput").value = purchaseOrderData.sku;
             document.getElementById("tanggalInput").value = purchaseOrderData.date;
             document.getElementById('deskripsiInput').value = purchaseOrderData.description;
-            document.getElementById('stokInput').value = `Stock Rev : ${purchaseOrderData.stock_rev}, Stock Rib Rev : ${purchaseOrderData.stock_rib_rev}`;
+            document.getElementById('stokInput').value = `Stock Rev : ${purchaseOrderData.stock_roll_rev} Roll, ${purchaseOrderData.stock_kg_rev} Kg, Stock Rib Rev : ${purchaseOrderData.stock_rib_rev}`;
             const imageElement = document.getElementById("fotoInput");
             imageElement.src = purchaseOrderData.attachment_image;
             document.getElementById("listStatus").value = purchaseOrderData.status;

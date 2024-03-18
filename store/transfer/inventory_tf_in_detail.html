@@ -89,13 +89,29 @@
                                 <h5 class="card-title mt-2">Spesifikasi</h5>
                                 <textarea class="form-control" name="spesifikasiInput" id="spesifikasiInput" 
                                 cols="30" rows="3" disabled></textarea>
-                                <!-- Inputan Stok (Roll & Kg) -->
-                                <h5 class="card-title mt-2">Stok (Roll & Kg)</h5>
+                                <!-- Inputan Stok -->
+                                <h5 class="card-title mt-2">Stok Body (Roll)</h5>
                                 <input
                                 type="text"
                                 class="form-control"
-                                id="stokInput"
-                                name="stokInput"
+                                id="stokRoll"
+                                name="stokRoll"
+                                disabled/>
+                                
+                                <h5 class="card-title mt-2">Stok Body (Kg)</h5>
+                                <input
+                                type="text"
+                                class="form-control"
+                                id="stokKg"
+                                name="stokKg"
+                                disabled/>
+                                
+                                <h5 class="card-title mt-2">Stok Rib (Kg)</h5>
+                                <input
+                                type="text"
+                                class="form-control"
+                                id="stokRib"
+                                name="stokRib"
                                 disabled/>
 
                                 <div class="row mt-1">
@@ -171,43 +187,42 @@
                                 <h5 class="card-title mt-2">Deskripsi</h5>
                                 <textarea class="form-control" name="deskripsiInput" id="deskripsiInput" 
                                 cols="30" rows="3" disabled></textarea>
-                                
-                                <!-- Inputan Href to PO -->
-                                <h5 class="card-title mt-2">Href to PO</h5>
-                                <input
-                                type="text"
-                                class="form-control"
-                                id="inputHrefPO"
-                                name="inputHrefPO"
-                                disabled/>
 
-                                <!-- Inputan Status Transfer -->
-                                <h5 class="card-title mt-2">Status Transfer</h5>
-                                <select class="form-select" id="listStatus" aria-label="Pilih Opsi" disabled>
-                                    <option selected>Pilih Status</option>
-                                    <option value="draft">Draft</option>
-                                    <option value="received">Received</option>
-                                    <option value="done">Done</option>
-                                </select>
-
-                                <!-- Button Submit -->
-                                <div
-                                style="
-                                    position: relative;
-                                    text-align: right;
-                                    margin-top: 20px;
-                                ">
-                                <button
-                                    type="button"
-                                    class="btn btn-primary"
-                                    id="submitButton">
-                                    Print
-                                </button>
-                                <a href="inventory_tf_view.html"
-                                    type="button"
-                                    class="btn btn-info">
-                                    Cancel
-                                </a>
+                                <!-- Button -->
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+                                    <div>
+                                    <button
+                                        type="button"
+                                        class="btn btn-info"
+                                        id="draftButton">
+                                        Draft
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="btn btn-warning"
+                                        id="receivedButton">
+                                        Received
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="btn btn-success"
+                                        id="doneButton">
+                                        Done
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="btn btn-primary"
+                                        id="printButton">
+                                        Print
+                                    </button>
+                                    </div>
+                                    <div>
+                                    <a href="inventory_tf_view.html"
+                                        type="button"
+                                        class="btn btn-info">
+                                        Close
+                                    </a>
+                                    </div>
                                 </div>
                             </div>
                             </div>

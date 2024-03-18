@@ -33,7 +33,6 @@ CihuyDomReady(() => {
 	let halamannow = 1;
 
     const AllStock = BaseUrl + UrlGetAllStock;
-    const ContactById = BaseUrl + UrlGetByIdContact;
 
     fetch(AllStock, requestOptionsGet)
         .then((result) => {
@@ -55,7 +54,7 @@ CihuyDomReady(() => {
                                 <p class="fw-normal mb-1">${values.grade}</p>
                             </td>
                             <td style="text-align: center; vertical-align: middle">
-                                <p class="fw-normal mb-1">${values.stock_rev}</p>
+                                <p class="fw-normal mb-1">${values.stock_roll_rev} Roll, ${values.stock_kg_rev} Kg</p>
                             </td>
                             <td style="text-align: center; vertical-align: middle">
                                 <button type="button" class="btn btn-info" data-po-id="${values.id}">Detail</button>	
