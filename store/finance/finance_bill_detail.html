@@ -118,33 +118,27 @@
                                 <h5 class="card-title mt-2">Deskripsi</h5>
                                 <textarea class="form-control" name="deskripsiInput" id="deskripsiInput" 
                                 cols="30" rows="3" placeholder="Masukkan Deskripsi" disabled></textarea>
-
-                                <!-- Inputan Status -->
-                                <h5 class="card-title mt-2">Status</h5>
-                                <select class="form-select" id="selectStatus" aria-label="Pilih Opsi">
-                                    <option selected>Pilih Status</option>
-                                    <option value="paid">Paid</option>
-                                    <option value="done">Done</option>
-                                </select>
                                 
                                 <!-- Button Submit -->
-                                <div
-                                style="
-                                    position: relative;
-                                    text-align: right;
-                                    margin-top: 20px;
-                                ">
-                                <a href="../finance.html"
-                                    type="button"
-                                    class="btn btn-info">
-                                    Cancel
-                                </a>
-                                <a href="finance_bill_edit.html"
-                                    type="button"
-                                    class="btn btn-primary"
-                                    id="submitButton">
-                                    Edit
-                                </a>
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+                                    <div>
+                                        <button type="button" class="btn btn-warning" id="paidButton">Paid</button>
+                                        <button type="button" class="btn btn-success" id="doneButton">Done</button>
+                                    </div>
+                                    <div>
+                                        <a href="../finance.html"
+                                            type="button"
+                                            class="btn btn-info">
+                                            Cancel
+                                        </a>
+                                        <button
+                                            type="button"
+                                            class="btn btn-primary"
+                                            id="submitButton"
+                                            values="${values.id}">
+                                            Edit
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                             </div>
