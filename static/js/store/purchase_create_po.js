@@ -29,9 +29,10 @@ async function addPreOrder(formData) {
         formDataObj.append('ketebalan', formData.ketebalan);
         formDataObj.append('setting', formData.setting);
         formDataObj.append('gramasi', formData.gramasi);
-        formDataObj.append('stock', formData.stock);
+        formDataObj.append('stock_roll', formData.stock_roll);
         formDataObj.append('price', formData.price);
         formDataObj.append('stock_rib', formData.stock_rib);
+        formDataObj.append('stock_kg', formData.stock_kg);
         formDataObj.append('attachment_image', fotoInput);
 
         console.log('Data formData sebelum dikirim:', formDataObj);
@@ -111,8 +112,9 @@ submitButton.addEventListener('click', () => {
     const gradeInput = document.querySelector('#gradeInput').value;
     const skuInput = document.getElementById('skuInput').value;
     const deskripsiInput = document.getElementById('deskripsiInput').value;
-    const stokInput = document.getElementById('stokInput').value;
-    const stokRibInput = document.getElementById('stokRibInput').value;
+    const stokRoll = document.getElementById('stokRoll').value;
+    const stokKg = document.getElementById('stokKg').value;
+    const stokRib = document.getElementById('stokRib').value;
     const hargaBeliInput = document.getElementById('hargaBeliInput').value;
     const listVendor = document.getElementById('listVendor').value;
     const listWarehouse = document.getElementById('listWarehouse').value;
@@ -121,7 +123,7 @@ submitButton.addEventListener('click', () => {
     const gramasiInput = document.getElementById('gramasiInput').value;
     
     // Check if any of the fields is empty
-    if (!tanggalInput || !namaBarangInput || !gradeInput || !skuInput || !deskripsiInput || !stokInput ||!stokRibInput
+    if (!tanggalInput || !namaBarangInput || !gradeInput || !skuInput || !deskripsiInput || !stokRoll || !stokKg ||!stokRib
         || !hargaBeliInput || !listVendor || !listWarehouse || !ketebalanInput || !settingInput) {
         Swal.fire({
             icon: 'warning',
@@ -138,8 +140,9 @@ submitButton.addEventListener('click', () => {
         grade: gradeInput,
         sku: skuInput,
         description: deskripsiInput,
-        stock: stokInput,
-        stock_rib: stokRibInput,
+        stock_roll: stokRoll,
+        stock_kg: stokKg,
+        stock_rib: stokRib,
         price: hargaBeliInput,
         contact_id: listVendor,
         warehouse_id: listWarehouse,
