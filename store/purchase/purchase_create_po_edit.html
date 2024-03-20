@@ -84,14 +84,16 @@
                                 class="form-control"
                                 id="namaBarangInput"
                                 name="namaBarangInput"/>
+                                
                                 <!-- Inputan Spesifikasi -->
                                 <h5 class="card-title mt-2">Spesifikasi</h5>
                                 <textarea class="form-control" name="spesifikasiInput" id="spesifikasiInput" 
                                 cols="30" rows="3"></textarea>
+
                                 <!-- Inputan Stok (Roll & Kg) -->
                                 <h5 class="card-title mt-2">Stok (Roll & Kg)</h5>
                                 <input
-                                type="number"
+                                type="text"
                                 class="form-control"
                                 id="stokInput"
                                 name="stokInput"
@@ -101,16 +103,30 @@
                                     <div class="col-md-6">
                                         <!-- Inputan From -->
                                         <h5 class="card-title mt-2">From</h5>
-                                        <select class="form-select" id="listVendor" aria-label="Pilih Opsi" disabled>
+                                        <!-- <select class="form-select" id="listVendor" aria-label="Pilih Opsi" disabled>
                                             <option selected>Pilih Vendor</option>
-                                        </select>
+                                        </select> -->
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="listVendor"
+                                            name="listVendor"
+                                            disabled
+                                        />
                                     </div>
                                     <div class="col-md-6">
                                         <!-- Inputan To -->
                                         <h5 class="card-title mt-2">To</h5>
-                                        <select class="form-select" id="listWarehouse" aria-label="Pilih Opsi" disabled>
+                                        <!-- <select class="form-select" id="listWarehouse" aria-label="Pilih Opsi" disabled>
                                             <option selected>Pilih Warehouse</option>
-                                        </select>
+                                        </select> -->
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="listWarehouse"
+                                            name="listWarehouse"
+                                            disabled
+                                        />
                                     </div>
                                 </div>
 
@@ -165,15 +181,6 @@
                                 <textarea class="form-control" name="deskripsiInput" id="deskripsiInput" 
                                 cols="30" rows="3"></textarea>
 
-                                <!-- Inputan Status Transfer -->
-                                <h5 class="card-title mt-2">Status Transfer</h5>
-                                <select class="form-select" id="listStatus" aria-label="Pilih Opsi">
-                                    <option selected>Pilih Status</option>
-                                    <option value="draft">Draft</option>
-                                    <option value="received">Received</option>
-                                    <option value="done">Done</option>
-                                </select>
-
                                 <!-- Button Submit -->
                                 <div
                                 style="
@@ -189,8 +196,8 @@
                                 <button
                                     type="button"
                                     class="btn btn-info"
-                                    id="cancelTransferInButton">
-                                    Cancel Transfer In
+                                    id="submitButton">
+                                    Simpan
                             </button>
                                 </div>
                             </div>
@@ -224,7 +231,7 @@
 	
 	<script src="../../static/js/style/spinner.js" defer></script>
     <script src="../../static/js/controller/logout.js" type="module"></script>
-    <script src="../../static/js/store/inventory_tf_in_edit.js" type="module"></script>
+    <script src="../../static/js/store/purchase_create_po_edit.js" type="module"></script>
     <script src="../../static/js/navbar.js" type="module"></script>
 	<script src="../../static/js/app.js"></script>
 	<script src="../../static/theme/bar/sidebar.js" type="module"></script>

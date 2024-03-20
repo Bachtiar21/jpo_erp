@@ -4,7 +4,7 @@ import { token } from "../controller/cookies.js";
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
 const GetTransferInById = BaseUrl + UrlGetTransferInById + `/${id}`;
-const receivedTfIn = BaseUrl + UrlReceivedTransferIn;
+const receivedTfIn = BaseUrl + UrlReceivedTransferIn + `/${id}/receive`;
 
 // Fetch data from API endpoint
 fetch(GetTransferInById, requestOptionsGet)
@@ -18,7 +18,7 @@ fetch(GetTransferInById, requestOptionsGet)
 // Function to add bank data
 function ReceivedTfIn(postData) {
     fetch(receivedTfIn, {
-      method: 'POST',
+      method: 'PUT',
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
