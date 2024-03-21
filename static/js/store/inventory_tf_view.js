@@ -270,8 +270,8 @@ fetch(AllTransferOut, requestOptionsGet)
                             <p class="fw-normal mb-1">${getBadgePO(values.status)}</p>
                         </td>
                         <td style="text-align: center; vertical-align: middle">
-							<button type="button" class="btn btn-info" data-tfin-id="${values.id}">Detail</button>	
-                            <button type="button" class="btn btn-warning" data-tfin-id="${values.id}">Update</button>	
+							<button id="detailTfOut" type="button" class="btn btn-info" data-tfout-id="${values.id}">Detail</button>	
+                            <button id="updateTfOut" type="button" class="btn btn-warning" data-tfout-id="${values.id}">Update</button>	
                         </td>
                     </tr>`;
 		});
@@ -281,19 +281,19 @@ fetch(AllTransferOut, requestOptionsGet)
 		updatePagination();
 
 		// Menambahkan event listener untuk button "Detail Data"
-		const detailTfIn = document.querySelectorAll('.btn-info');
-		detailTfIn.forEach(button => {
+		const detailTfOutButtons = document.querySelectorAll('#detailTfOut');
+		detailTfOutButtons.forEach(button => {
 			button.addEventListener('click', (event) => {
-				const id = event.target.getAttribute('data-tfin-id');
+				const id = event.target.getAttribute('data-tfout-id');
 				window.location.href = `inventory_tf_out_detail.html?id=${id}`;
 			});
 		});
 
 		// Menambahkan event listener untuk button "Update Data"
-		const updateTfIn = document.querySelectorAll('.btn-warning');
-		updateTfIn.forEach(button => {
+		const updateTfOutButtons = document.querySelectorAll('#updateTfOut');
+		updateTfOutButtons.forEach(button => {
 			button.addEventListener('click', (event) => {
-				const id = event.target.getAttribute('data-tfin-id');
+				const id = event.target.getAttribute('data-tfout-id');
 				window.location.href = `inventory_tf_out_edit.html?id=${id}`;
 			});
 		});

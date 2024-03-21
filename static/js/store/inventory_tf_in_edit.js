@@ -65,4 +65,3 @@ fetch(GetTransferInById, requestOptionsGet)
 })
 .catch(error => console.error('Error:', error));
 
-

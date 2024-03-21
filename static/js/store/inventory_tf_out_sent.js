@@ -1,23 +1,23 @@
-import { BaseUrl, UrlReceivedTransferIn, UrlGetTransferInById, requestOptionsGet } from "../controller/template.js";
+import { BaseUrl, UrlSentTransferOut } from "../controller/template.js";
 import { token } from "../controller/cookies.js";
 
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
-const GetTransferInById = BaseUrl + UrlGetTransferInById + `/${id}`;
-const receivedTfIn = BaseUrl + UrlReceivedTransferIn + `/${id}/receive`;
+// const GetTransferInById = BaseUrl + UrlGetTransferInById + `/${id}`;
+const sentTransferOut = BaseUrl + UrlSentTransferOut + `/${id}/receive`;
 
-// Fetch data from API endpoint
-fetch(GetTransferInById, requestOptionsGet)
-  .then(response => response.json())
-    .then(data => {
-        // Populate form fields with data
-        document.getElementById('tanggalInput').value = data.data.date;
-    })
-.catch(error => console.error('Error:', error));
+// // Fetch data from API endpoint
+// fetch(GetTransferInById, requestOptionsGet)
+//   .then(response => response.json())
+//     .then(data => {
+//         // Populate form fields with data
+//         document.getElementById('tanggalInput').value = data.data.date;
+//     })
+// .catch(error => console.error('Error:', error));
 
 // Function to add bank data
-function ReceivedTfIn(postData) {
-    fetch(receivedTfIn, {
+function SentTransferOut(postData) {
+    fetch(sentTransferOut, {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -32,7 +32,7 @@ function ReceivedTfIn(postData) {
         Swal.fire({
           icon: 'success',
           title: 'Sukses!',
-          text: 'Transfer In Berhasil Di received!',
+          text: 'Transfer Out Berhasil Di sent!',
           timer: 1500,
           showConfirmButton: false
         }).then(() => {
@@ -44,12 +44,12 @@ function ReceivedTfIn(postData) {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: 'Transfer In Gagal Di received!',
+          text: 'Transfer Out Gagal Di sent!',
         });
       }
     })
     .catch(error => {
-      console.error("Error while adding receive data:", error);
+      console.error("Error while adding sent data:", error);
     });
   }
   
@@ -80,8 +80,8 @@ submitButton.addEventListener('click', () => {
   
   // Display SweetAlert for confirmation
   Swal.fire({
-    title: 'Received Transfer In',
-    text: 'Anda Yakin Received Transfer In?',
+    title: 'Sent Transfer Out',
+    text: 'Anda Yakin Sent Transfer Out?',
     icon: 'question',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
@@ -91,7 +91,7 @@ submitButton.addEventListener('click', () => {
   }).then((result) => {
     if (result.isConfirmed) {
       // Call function to add employee data
-      ReceivedTfIn(postData);
+      SentTransferOut(postData);
     }
   });
 });
