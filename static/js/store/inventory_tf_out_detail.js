@@ -1,6 +1,5 @@
 import { BaseUrl, UrlGetTransferOutById, UrlGetByIdContact, UrlGetWarehouseByIdByToken, requestOptionsGet } from "../controller/template.js";
 
-
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
 const GetTransferOutById = BaseUrl + UrlGetTransferOutById + `/${id}`;

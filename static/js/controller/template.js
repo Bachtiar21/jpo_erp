@@ -96,7 +96,7 @@ export let UrlPutPurchaseOrder = "api/auth/purchase-order/u";
 export let UrlPutTransferIn = "api/auth/inventory/transfer-in/u";
 export let UrlReceivedTransferIn = "api/auth/inventory/transfer-in";
 export let UrlPutSalesOrder = "api/auth/sales-order/u";
-export let UrlSentTransferOut = "/api/auth/inventory/transfer-out";
+export let UrlSentTransferOut = "api/auth/inventory/transfer-out";
 
 // Endpoint Delete
 export let UrlDeleteUser = "api/auth/user/d";
