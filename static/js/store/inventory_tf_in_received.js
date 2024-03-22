@@ -1,19 +1,12 @@
-import { BaseUrl, UrlReceivedTransferIn, UrlGetTransferInById, requestOptionsGet } from "../controller/template.js";
+import { BaseUrl, UrlReceivedTransferIn } from "../controller/template.js";
 import { token } from "../controller/cookies.js";
 
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
-const GetTransferInById = BaseUrl + UrlGetTransferInById + `/${id}`;
 const receivedTfIn = BaseUrl + UrlReceivedTransferIn + `/${id}/receive`;
 
-// Fetch data from API endpoint
-fetch(GetTransferInById, requestOptionsGet)
-  .then(response => response.json())
-    .then(data => {
-        // Populate form fields with data
-        document.getElementById('tanggalInput').value = data.data.date;
-    })
-.catch(error => console.error('Error:', error));
+// Default Tanggal Receive
+document.getElementById('tanggalInput').value = new Date().toISOString().split('T')[0];
 
 // Function to add bank data
 function ReceivedTfIn(postData) {
@@ -60,9 +53,10 @@ submitButton.addEventListener('click', () => {
   const stokRib = document.querySelector('#stokRib').value;
   const stokRoll = document.querySelector('#stokRoll').value;
   const stokKg = document.querySelector('#stokKg').value;
+  const receiveDate = document.querySelector('#tanggalInput').value;
   
   // Check if any of the fields is empty
-  if (!stokRib || !stokRoll || !stokKg) {
+  if (!stokRib || !stokRoll || !stokKg || !receiveDate) {
     Swal.fire({
       icon: 'warning',
       title: 'Oops...',
@@ -75,7 +69,9 @@ submitButton.addEventListener('click', () => {
   const postData = {
     stock_roll_rev : stokRoll,
     stock_kg_rev: stokKg,
-    stok_rib_rev : stokRib
+    stok_rib_rev : stokRib,
+    receive_date : receiveDate
+
   };
   
   // Display SweetAlert for confirmation
