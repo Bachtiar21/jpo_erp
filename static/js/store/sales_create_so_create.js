@@ -53,6 +53,22 @@ fetch(GetAllBroker, requestOptionsGet)
         console.error('Error fetching Contact:', error);
 });
 
+const dropdownWarehouse = document.getElementById("listWarehouse");
+// Fetch data dari API
+fetch(AllWarehouseByToken, requestOptionsGet)
+    .then((response) => response.json())
+    .then((data) => {
+        data.forEach((warehouse) => {
+            const option = document.createElement("option");
+            option.value = warehouse.id;
+            option.textContent = warehouse.name;
+            dropdownWarehouse.appendChild(option);
+        });
+    })
+    .catch((error) => {
+        console.error('Error fetching warehouse:', error);
+});
+
 // Fetch Data SKU di Dropdown
 const dropdownSKU = document.getElementById("listSKU");
 
