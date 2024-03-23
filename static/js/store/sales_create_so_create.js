@@ -2,6 +2,7 @@ import { BaseUrl, UrlGetAllSKU, UrlGetAllContact,requestOptionsGet } from "../co
 
 const GetAllSKU = BaseUrl + UrlGetAllSKU;
 const GetAllContact = BaseUrl + UrlGetAllContact;
+const GetAllBroker = BaseUrl + UrlGetAllContact;
 
 // Fetch Data Kontak di Dropdown
 const dropdownVendor = document.getElementById("listSKU");
@@ -20,9 +21,25 @@ fetch(GetAllSKU, requestOptionsGet)
         console.error('Error fetching SKU:', error);
 });
 
+const dropdownContact = document.getElementById("listContact");
+
+fetch(GetAllContact, requestOptionsGet)
+    .then((response) => response.json())
+    .then((data) => {
+        data.data.forEach((contact) => {
+            const option = document.createElement("option");
+            option.value = contact;
+            option.textContent = broker;
+            dropdownContact.appendChild(option);
+        });
+    })
+    .catch((error) => {
+        console.error('Error fetching SKU:', error);
+});
+
 // Fetch Data Broker di Dropdown
 const dropdownBroker = document.getElementById('listBroker')
-fetch(GetAllContact, requestOptionsGet)
+fetch(GetAllBroker, requestOptionsGet)
     .then((response) => response.json())
     .then((data) => {
         data.data.forEach((contact) => {
