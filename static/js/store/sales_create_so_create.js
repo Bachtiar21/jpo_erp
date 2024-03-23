@@ -2,6 +2,7 @@ import { BaseUrl, UrlGetAllSKU, UrlGetAllContact,requestOptionsGet } from "../co
 
 const GetAllSKU = BaseUrl + UrlGetAllSKU;
 const GetAllContact = BaseUrl + UrlGetAllContact;
+const AllWarehouseByToken = BaseUrl + UrlGetWarehouseByToken;
 const GetAllBroker = BaseUrl + UrlGetAllContact;
 
 // Fetch Data Kontak di Dropdown
