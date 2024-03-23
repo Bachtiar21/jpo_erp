@@ -1,9 +1,11 @@
-import { BaseUrl, UrlGetAllSKU, UrlGetAllContact,requestOptionsGet } from "../controller/template.js";
+import { BaseUrl, UrlGetAllSKU, UrlGetAllContact, UrlGetWarehouseByToken, UrlPostSalesOrder, requestOptionsGet } from "../controller/template.js";
+import { token } from "../controller/cookies.js";
 
 const GetAllSKU = BaseUrl + UrlGetAllSKU;
 const GetAllContact = BaseUrl + UrlGetAllContact;
 const AllWarehouseByToken = BaseUrl + UrlGetWarehouseByToken;
 const GetAllBroker = BaseUrl + UrlGetAllContact;
+const PostSalesOrder = BaseUrl + UrlPostSalesOrder;
 
 // Fetch Data Kontak di Dropdown
 const dropdownVendor = document.getElementById("listSKU");
@@ -29,8 +31,8 @@ fetch(GetAllContact, requestOptionsGet)
     .then((data) => {
         data.data.forEach((contact) => {
             const option = document.createElement("option");
-            option.value = contact;
-            option.textContent = broker;
+            option.value = contact.id;
+            option.textContent = contact.name;
             dropdownContact.appendChild(option);
         });
     })
@@ -54,6 +56,22 @@ fetch(GetAllBroker, requestOptionsGet)
         console.error('Error fetching Contact:', error);
 });
 
+// Fetch Data SKU di Dropdown
+const dropdownSKU = document.getElementById('listSKU')
+fetch(GetAllSKU, requestOptionsGet)
+    .then((response) => response.json())
+    .then((data) => {
+        data.data.forEach((sku) => {
+            const option = document.createElement("option");
+            option.value = sku.id;
+            option.textContent = sku.name;
+            dropdownSKU.appendChild(option);
+        });
+    })
+    .catch((error) => {
+        console.error('Error fetching SKU:', error);
+});
+
 const dropdownWarehouse = document.getElementById("listWarehouse");
 // Fetch data dari API
 fetch(AllWarehouseByToken, requestOptionsGet)
@@ -70,25 +88,93 @@ fetch(AllWarehouseByToken, requestOptionsGet)
         console.error('Error fetching warehouse:', error);
 });
 
-// Fetch Data SKU di Dropdown
-const dropdownSKU = document.getElementById("listSKU");
 
-dropdownSKU.addEventListener("change", function() {
-    const selectedSKU = this.value;
-    
-    // Fetch data dari API sesuai SKU yang dipilih
-    fetch(`http://localhost:8000/api/auth/sales-order/${selectedSKU}/sku`, requestOptionsGet)
-        .then((response) => response.json())
-        .then((data) => {
-            // Mengisi formulir dengan data yang diterima
-            const skuData = data.data[0]; // Ambil data pertama dari respons
-            document.getElementById("nomorDoInput").value = skuData.no_do;
-            document.getElementById("listWarehouse").value = skuData.to;
-            document.getElementById("listVendor").value = skuData.from;
-            document.getElementById("stokInput").value = skuData.stock_rev;
-            document.getElementById("hargaJualInput").value = skuData.price;
-        })
-        .catch((error) => {
-            console.error('Error fetching SKU:', error);
+// Event listener for the "Tambah SO" button
+const submitButton = document.querySelector('#submitButton');
+submitButton.addEventListener('click', () => {
+  // Get input values
+  const listContact = document.querySelector('#listContact').value;
+  const listWarehouse = document.querySelector('#listWarehouse').value;
+  const listSKU = document.querySelector('#listSKU').value;
+  const dateInput = document.querySelector('#dateInput').value;
+  const stokRoll = document.querySelector('#stokRoll').value;
+  const stokKg = document.querySelector('#stokKg').value;
+  const stokRib = document.querySelector('#stokRib').value;
+  const hargaJualInput = document.querySelector('#hargaJualInput').value;
+  const listBroker = document.querySelector('#listBroker').value;
+  const brokerFeeInput = document.querySelector('#brokerFeeInput').value;
+  
+  // Check if any of the fields is empty
+  if (!listContact || !listWarehouse || !listSKU || !dateInput || !stokRoll || !stokKg || !stokRib || !hargaJualInput || !listBroker
+    || !brokerFeeInput) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Oops...',
+      text: 'Field harus diisi!',
     });
+    return; // Stop further processing
+  }
+
+  // Create a data object to be sent
+  const postData = {
+    sku: listSKU,
+    broker_fee: brokerFeeInput,
+    broker: listBroker,
+    contact_id : listContact,
+    warehouse_id : listWarehouse,
+    date : dateInput,
+    stock_roll : stokRoll,
+    stock_kg : stokKg,
+    stock_rib : stokRib,
+    price : hargaJualInput,
+  };
+  
+  // Display SweetAlert for confirmation
+  Swal.fire({
+    title: 'Tambah Sales Order',
+    text: 'Anda Yakin Menambah Sales Order?',
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes',
+    cancelButtonText: 'No'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      fetch(PostSalesOrder, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(postData)
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.data) {
+        // Display success SweetAlert
+        Swal.fire({
+          icon: 'success',
+          title: 'Sukses!',
+          text: 'Sales Order Berhasil Ditambahkan!',
+          timer: 1500,
+          showConfirmButton: false
+        }).then(() => {
+          // Refresh the page after successful addition
+          window.location.href = 'sales_so_list_view.html';
+        });
+      } else {
+        // Display error SweetAlert
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Sales Order Gagal Ditambahkan!',
+        });
+      }
+    })
+    .catch(error => {
+      console.error("Error while adding SO data:", error);
+    });
+    }
+  });
 });
