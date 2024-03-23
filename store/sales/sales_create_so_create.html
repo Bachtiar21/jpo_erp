@@ -96,21 +96,46 @@
                   <div class="card">
                     <div class="card-body">
                       <!-- Inputan Nomor SO -->
+                      <h5 class="card-title">Nomor SO</h5>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="nomorSoInput"
+                        name="nomorSoInput"
+                        placeholder="Masukkan Nomor SO"
+                        required
+                      />
 
                       <div class="row mt-1">
                         <div class="col-md-6">
-                            <!-- Inputan SKU -->
-                            <h5 class="card-title mt-2">From</h5>
-                            <select class="form-select" id="listContact" aria-label="Pilih Opsi">
-                                <option selected>Pilih Contact</option>
-                            </select>
-                        </div>            </div>
-                        <<div class="col-md-6">
-                            <!-- Inputan SKU -->
-                            <h5 class="card-title mt-2">To</h5>
-                            <select class="form-select" id="listWarehouse" aria-label="Pilih Opsi">
-                                <option selected>Pilih SKU</option>
-                            </select>
+                          <!-- Inputan From -->
+                          <h5 class="card-title mt-2">From</h5>
+                          <!-- <select class="form-select" id="listVendor" aria-label="Pilih Opsi">
+                                            <option selected>Pilih Vendor</option>
+                                        </select> -->
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="listVendor"
+                            name="listVendor"
+                            placeholder="Masukkan Contact"
+                            required
+                          />
+                        </div>
+                        <div class="col-md-6">
+                          <!-- Inputan To -->
+                          <h5 class="card-title mt-2">To</h5>
+                          <!-- <select class="form-select" id="listWarehouse" aria-label="Pilih Opsi">
+                                            <option selected>Pilih Warehouse</option>
+                                        </select> -->
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="listWarehouse"
+                            name="listWarehouse"
+                            placeholder="Masukkan Warehouse"
+                            required
+                          />
                         </div>
                       </div>
 
