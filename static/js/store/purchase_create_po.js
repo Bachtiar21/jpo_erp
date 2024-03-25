@@ -7,7 +7,6 @@ const AllWarehouseByToken = BaseUrl + UrlGetWarehouseByToken;
 
 async function addPreOrder(formData) {
     const fotoInput = document.getElementById('fotoInput').files[0];
-    const fileName = fotoInput.name;
     if (!fotoInput) {
         Swal.fire({
             icon: 'warning',
