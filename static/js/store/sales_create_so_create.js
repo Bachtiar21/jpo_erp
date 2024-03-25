@@ -98,6 +98,11 @@ submitButton.addEventListener('click', () => {
     return; // Stop further processing
   }
 
+  // Pengkondisian Jika Broker tidak dipilih
+  if (listBroker === "Pilih Broker") {
+      listBroker = "";
+  }
+
   // Create a data object to be sent
   const postData = {
     sku: listSKU,
