@@ -151,7 +151,7 @@ submitButton.addEventListener('click', () => {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: 'Sales Order Gagal Ditambahkan!',
+          text: data.message,
         });
       }
     })

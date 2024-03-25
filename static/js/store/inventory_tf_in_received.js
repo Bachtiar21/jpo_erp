@@ -69,7 +69,7 @@ submitButton.addEventListener('click', () => {
   const postData = {
     stock_roll_rev : stokRoll,
     stock_kg_rev: stokKg,
-    stok_rib_rev : stokRib,
+    stock_rib_rev : stokRib,
     receive_date : receiveDate
 
   };
