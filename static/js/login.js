@@ -1,7 +1,7 @@
 import { BaseUrl, UrlPostLogin } from "./controller/template.js";
 
-// Listener untuk login ke Dashboard
-document.getElementById("buttonLogin").addEventListener("click", function() {
+// Fungsi untuk melakukan login
+function login() {
     var username = document.getElementById("usernameInput").value;
     var password = document.getElementById("passwordInput").value;
     var UrlLogin = BaseUrl + UrlPostLogin;
@@ -56,4 +56,16 @@ document.getElementById("buttonLogin").addEventListener("click", function() {
     .catch((error) => {
         console.error('Error:', error);
     });
+}
+
+// Listener untuk login ke Dashboard ketika tombol "Enter" ditekan
+document.getElementById("passwordInput").addEventListener("keyup", function(event) {
+    // Check jika tombol yang ditekan adalah tombol "Enter"
+    if (event.key === "Enter") {
+        // Lakukan login
+        login();
+    }
 });
+
+// Listener untuk login ke Dashboard ketika tombol login ditekan
+document.getElementById("buttonLogin").addEventListener("click", login);
