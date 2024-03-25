@@ -105,8 +105,7 @@ submitButton.addEventListener('click', () => {
   const brokerFeeInput = document.querySelector('#brokerFeeInput').value;
   
   // Check if any of the fields is empty
-  if (!listContact || !listWarehouse || !listSKU || !dateInput || !stokRoll || !stokKg || !stokRib || !hargaJualInput || !listBroker
-    || !brokerFeeInput) {
+  if (!listContact || !listWarehouse || !listSKU || !dateInput || !stokRoll || !stokKg || !stokRib || !hargaJualInput) {
     Swal.fire({
       icon: 'warning',
       title: 'Oops...',
