@@ -1,7 +1,7 @@
-import { BaseUrl, BaseUrlFe, BaseUrlFeDeploy, UrlLogoutUser, requestOptionsPost } from "./template.js";
+import { BaseUrl, BaseUrlFe, UrlLogoutUser, requestOptionsPost } from "./template.js";
 
 // Url Logout User
-const LogoutUser = BaseUrlFeDeploy + UrlLogoutUser;
+const LogoutUser = BaseUrl + UrlLogoutUser;
 
 // Tambahkan event listener untuk tombol logout
 const logoutButton = document.getElementById('logoutButton');
