@@ -260,12 +260,12 @@ fetch(AllTransferOut, requestOptionsGet)
 						<td style="text-align: center; vertical-align: middle">
                             <p class="fw-normal mb-1">${values.no_so}</p>
                         </td>
-						<td id="contactCellOut${values.id}" style="text-align: center; vertical-align: middle">
-							<!-- Nama contact akan ditampilkan di sini -->
-						</td>	
 						<td id="warehouseCellOut${values.id}" style="text-align: center; vertical-align: middle">
 							<!-- Nama contact akan ditampilkan di sini -->
 						</td>
+						<td id="contactCellOut${values.id}" style="text-align: center; vertical-align: middle">
+							<!-- Nama contact akan ditampilkan di sini -->
+						</td>	
                         <td style="text-align: center; vertical-align: middle">
                             <p class="fw-normal mb-1">${getBadgePO(values.status)}</p>
                         </td>
