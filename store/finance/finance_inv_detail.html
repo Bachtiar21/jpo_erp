@@ -57,13 +57,9 @@
             <main class="content">
                 <div class="container-fluid p-0">
                 <h5 class="right-aligned" style="float: right">
-                    <a href="../../dashboard.html">Home</a> / <a href="../finance.html">Fiannce</a> / Update Invoice
+                    <a href="../../dashboard.html">Home</a> / <a href="../finance.html">Finance</a> / Detail Invoice
                 </h5>
-                <h1 class="h3 mb-3"><b>Update Invoice</b></h1>
-                    <div class="col-md-6 mb-3">
-                        <input type="hidden" id="titleTextBox" disabled>
-                        <input type="hidden" id="filenameTextBox">
-                    </div>
+                <h1 class="h3 mb-3"><b>Detail Invoice</b></h1>
                     <div class="row">
                         <div class="col-12">
                         <form>
@@ -141,13 +137,18 @@
                                             class="btn btn-info">
                                             Cancel
                                         </a>
-                                        <button
+                                        <!-- <button
                                             type="button"
                                             class="btn btn-primary"
                                             id="submitButton"
                                             values="${values.id}">
                                             Edit
-                                        </button>
+                                        </button> -->
+                                        <a href="../finance/finance_inv_edit.html"
+                                            type="button"
+                                            class="btn btn-primary">
+                                            Edit
+                                        </a>
                                     </div>
                                 </div>
                             </div>

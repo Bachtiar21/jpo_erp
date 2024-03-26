@@ -56,4 +56,12 @@ fetch(GetByIdPurchaseOrder, requestOptionsGet)
     })
     .catch(error => {
         console.log('error', error);
+});
+
+// Menambahkan event listener untuk button "Edit PO"
+const editPOButtons = document.querySelectorAll('.btn-primary');
+editPOButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        window.location.href = `purchase_po_edit.html?id=${id}`;
     });
+});
