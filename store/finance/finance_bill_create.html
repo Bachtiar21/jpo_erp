@@ -71,13 +71,12 @@
                             <div class="card-body">
                                 <!-- Inputan Vendor -->
                                 <h5 class="card-title mt-2">Vendor</h5>
-                                <input
-                                type="text"
-                                class="form-control"
-                                id="vendorInput"
-                                name="vendorInput"
-                                placeholder="Masukkan Vendor"
-                                required/>
+                                <select
+                                    class="form-select"
+                                    id="listVendor"
+                                    aria-label="Pilih Vendor">
+                                    <option selected>Pilih Vendor</option>
+                                </select>
 
                                 <div class="row mt-1">
                                     <div class="col-md-6">
@@ -103,6 +102,15 @@
                                             required/>
                                     </div>
                                 </div>
+
+                                <!-- Inputan Rekening -->
+                                <h5 class="card-title mt-2">Rekening</h5>
+                                <select
+                                    class="form-select"
+                                    id="listRekening"
+                                    aria-label="Pilih Rekening">
+                                    <option selected>Pilih Rekening</option>
+                                </select>
                                 
                                 <!-- Inputan Jumlah -->
                                 <h5 class="card-title mt-2">Jumlah</h5>
@@ -169,7 +177,7 @@
 	
 	<script src="../../static/js/style/spinner.js" defer></script>
     <script src="../../static/js/controller/logout.js" type="module"></script>
-    <script src="../../static/js/store/inventory_tf_view.js" type="module"></script>
+    <script src="../../static/js/store/finance_bill_create.js" type="module"></script>
     <script src="../../static/js/navbar.js" type="module"></script>
 	<script src="../../static/js/app.js"></script>
 	<script src="../../static/theme/bar/sidebar.js" type="module"></script>

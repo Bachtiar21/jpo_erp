@@ -72,97 +72,131 @@ fetch(AllWarehouseByToken, requestOptionsGet)
         console.error('Error fetching warehouse:', error);
 });
 
+// Pengkondisian Radiobutton untuk Broker
+const radioButtons = document.querySelectorAll('input[name="radios-example"]');
+const brokerDiv = document.querySelector('.broker');
+const manualFee = document.querySelector('.manualFeeInput');
+const percenFee = document.querySelector('.percenFeeInput');
+const feeRadioButtons = document.querySelectorAll('input[name="inline-radios-example"]');
+
+feeRadioButtons.forEach(radioButton => {
+    radioButton.addEventListener('change', function() {
+        if (this.value === "manualFee") {
+            manualFee.style.display = 'block';
+            percenFee.style.display = 'none';
+        } else if (this.value === "percenFee") {
+            manualFee.style.display = 'none';
+            percenFee.style.display = 'block';
+        }
+    });
+});
+
+radioButtons.forEach(radioButton => {
+    radioButton.addEventListener('change', function() {
+        if (this.value === "true") {
+            brokerDiv.style.display = 'block';
+        } else {
+            brokerDiv.style.display = 'none';
+        }
+    });
+});
 
 // Event listener for the "Tambah SO" button
 const submitButton = document.querySelector('#submitButton');
 submitButton.addEventListener('click', () => {
-  // Get input values
-  const listContact = document.querySelector('#listContact').value;
-  const listWarehouse = document.querySelector('#listWarehouse').value;
-  const listSKU = document.querySelector('#listSKU').value;
-  const dateInput = document.querySelector('#dateInput').value;
-  const stokRoll = document.querySelector('#stokRoll').value;
-  const stokKg = document.querySelector('#stokKg').value;
-  const stokRib = document.querySelector('#stokRib').value;
-  const hargaJualInput = document.querySelector('#hargaJualInput').value;
-  const listBroker = document.querySelector('#listBroker').value;
-  const brokerFeeInput = document.querySelector('#brokerFeeInput').value;
-  
-  // Check if any of the fields is empty
-  if (!listContact || !listWarehouse || !listSKU || !dateInput || !stokRoll || !stokKg || !stokRib || !hargaJualInput) {
-    Swal.fire({
-      icon: 'warning',
-      title: 'Oops...',
-      text: 'Field harus diisi!',
-    });
-    return; // Stop further processing
-  }
+    // Get input values
+    const listContact = document.querySelector('#listContact').value;
+    const listWarehouse = document.querySelector('#listWarehouse').value;
+    const listSKU = document.querySelector('#listSKU').value;
+    const dateInput = document.querySelector('#dateInput').value;
+    const stokRoll = document.querySelector('#stokRoll').value;
+    const stokKg = document.querySelector('#stokKg').value;
+    const stokRib = document.querySelector('#stokRib').value;
+    const hargaJualInput = document.querySelector('#hargaJualInput').value;
+    let listBroker = document.querySelector('#listBroker').value; // Gunakan let karena nilai listBroker akan diubah
 
-  // Pengkondisian Jika Broker tidak dipilih
-  if (listBroker === "Pilih Broker") {
-      listBroker = "";
-  }
-
-  // Create a data object to be sent
-  const postData = {
-    sku: listSKU,
-    broker_fee: brokerFeeInput,
-    broker: listBroker,
-    contact_id : listContact,
-    warehouse_id : listWarehouse,
-    date : dateInput,
-    stock_roll : stokRoll,
-    stock_kg : stokKg,
-    stock_rib : stokRib,
-    price : hargaJualInput,
-  };
-  
-  // Display SweetAlert for confirmation
-  Swal.fire({
-    title: 'Tambah Sales Order',
-    text: 'Anda Yakin Menambah Sales Order?',
-    icon: 'question',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes',
-    cancelButtonText: 'No'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      fetch(PostSalesOrder, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(postData)
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.data) {
-        // Display success SweetAlert
+    // Check if any of the fields is empty
+    if (!listContact || !listWarehouse || !listSKU || !dateInput || !stokRoll || !stokKg || !stokRib || !hargaJualInput) {
         Swal.fire({
-          icon: 'success',
-          title: 'Sukses!',
-          text: 'Sales Order Berhasil Ditambahkan!',
-          timer: 1500,
-          showConfirmButton: false
-        }).then(() => {
-          // Refresh the page after successful addition
-          window.location.href = 'sales_so_list_view.html';
+            icon: 'warning',
+            title: 'Oops...',
+            text: 'Field harus diisi!',
         });
-      } else {
-        // Display error SweetAlert
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: data.message,
-        });
-      }
-    })
-    .catch(error => {
-      console.error("Error while adding SO data:", error);
-    });
+        return;
     }
-  });
+
+    // Pengkondisian Jika Broker tidak dipilih
+    if (listBroker === "Pilih Broker") {
+        listBroker = "";
+    }
+
+    // Get broker fee value based on the selected type
+    let brokerFeeValue;
+    const manualFeeInput = document.querySelector('#manualFeeInput');
+    const percenFeeInput = document.querySelector('#percenFeeInput');
+    if (document.querySelector('input[name="inline-radios-example"]:checked').value === 'manualFee') {
+        brokerFeeValue = manualFeeInput.value;
+    } else {
+        const percentageFee = parseFloat(percenFeeInput.value) / 100; 
+        brokerFeeValue = hargaJualInput * percentageFee;
+    }
+
+    const postData = {
+        sku: listSKU,
+        broker_fee: brokerFeeValue,
+        broker: listBroker,
+        contact_id: listContact,
+        warehouse_id: listWarehouse,
+        date: dateInput,
+        stock_roll: stokRoll,
+        stock_kg: stokKg,
+        stock_rib: stokRib,
+        price: hargaJualInput,
+    };
+
+    Swal.fire({
+        title: 'Tambah Sales Order',
+        text: 'Anda Yakin Menambah Sales Order?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            fetch(PostSalesOrder, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(postData)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.data) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Sukses!',
+                            text: 'Sales Order Berhasil Ditambahkan!',
+                            timer: 1500,
+                            showConfirmButton: false
+                        })
+                        // .then(() => {
+                        //     window.location.href = 'sales_so_list_view.html';
+                        // });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: data.message,
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error("Error while adding SO data:", error);
+                });
+        }
+    });
 });

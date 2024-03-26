@@ -32,8 +32,8 @@ function login() {
                 document.cookie = "login=" + data.access_token;
                 console.log("Access token disimpan dalam cookie.");
 
-                // Alihkan ke halaman index.html
-                window.location.href = "index.html";
+                // Alihkan ke halaman dashboard.html
+                window.location.href = "dashboard.html";
             });
         } else if (data.error === "Anda telah dilarang akses ke aplikasi ini.") {
             // Jika login gagal karena user telah dilarang akses

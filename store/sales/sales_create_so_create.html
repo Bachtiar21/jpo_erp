@@ -187,26 +187,74 @@
                         required
                       />
 
-                      <!-- Inputan Broker -->
-                      <h5 class="card-title mt-2">Broker</h5>
-                      <select
-                        class="form-select"
-                        id="listBroker"
-                        aria-label="Pilih Broker"
-                      >
-                        <option selected>Pilih Broker</option>
-                      </select>
+                      <!-- Inputan Lewat Broker? -->
+                      <h5 class="card-title mt-2">Lewat Broker?</h5>
+                      <label class="form-check">
+                        <input class="form-check-input" type="radio" value="true" name="radios-example">
+                        <span class="form-check-label">
+                          Ya
+                        </span>
+                      </label>
+                      <label class="form-check">
+                        <input class="form-check-input" type="radio" value="false" name="radios-example">
+                        <span class="form-check-label">
+                          Tidak
+                        </span>
+                      </label>
 
-                      <!-- Inputan Broker Fee -->
-                      <h5 class="card-title mt-2">Broker Fee</h5>
-                      <input
-                        type="number"
-                        class="form-control"
-                        id="brokerFeeInput"
-                        name="brokerFeeInput"
-                        placeholder="Masukkan Broker Fee"
-                        required
-                      />
+                      <!-- Inputan Broker -->
+                      <div class="broker" style="display: none;">
+                        <h5 class="card-title mt-2">Broker</h5>
+                        <select
+                          class="form-select"
+                          id="listBroker"
+                          aria-label="Pilih Broker"
+                        >
+                          <option selected>Pilih Broker</option>
+                        </select>
+
+                        <!-- Inputan Pilih Jenis Broker Fee -->
+                        <h5 class="card-title mt-2">Pilih Jenis Broker Fee</h5>
+                        <div id="jenisBrokerFee">
+                          <label class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inline-radios-example" value="manualFee">
+                            <span class="form-check-label">
+                              Manual Fee
+                            </span>
+                          </label>
+                          <label class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inline-radios-example" value="percenFee">
+                            <span class="form-check-label">
+                              Persen Fee
+                            </span>
+                          </label>
+                        </div>
+
+                        <!-- Inputan Broker Fee -->
+                        <div class="manualFeeInput" style="display: none;">
+                          <h5 class="card-title mt-2">Broker Fee</h5>
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="manualFeeInput"
+                            name="brokerFeeInput"
+                            placeholder="Masukkan Broker Fee (Contoh : 10000)"
+                            required
+                          />
+                        </div>
+
+                        <div class="percenFeeInput" style="display: none;">
+                          <h5 class="card-title mt-2">Broker Fee</h5>
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="percenFeeInput"
+                            name="brokerFeeInput"
+                            placeholder="Masukkan Broker Fee (Rentang Nilai 0-100)"
+                            required
+                          />
+                        </div>
+                      </div>
 
                       <!-- Button Submit -->
                       <div
