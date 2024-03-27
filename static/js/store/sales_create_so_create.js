@@ -185,7 +185,9 @@ submitButton.addEventListener('click', () => {
                             text: 'Sales Order Berhasil Ditambahkan!',
                             timer: 1500,
                             showConfirmButton: false
-                        })
+                        }).then(() => {
+                            window.location.href = "sales_so_list.view"
+                        });
                     } else {
                         Swal.fire({
                             icon: 'error',
