@@ -1,7 +1,7 @@
 import { CihuyId } from "https://c-craftjs.github.io/element/element.js";
 import { CihuyDomReady, CihuyQuerySelector } from "https://c-craftjs.github.io/table/table.js";
 import { BaseUrl, UrlGetAllSalesOrder, UrlGetByIdContact, UrlGetWarehouseByIdByToken, requestOptionsGet } from "../controller/template.js";
-// import { getBadgeBank } from "../style/badge.js";
+import { getBadgePO } from "../style/badge.js";
 
 // Untuk Membuat Pagination
 CihuyDomReady(() => {
@@ -52,7 +52,7 @@ fetch(AllSalesOrder, requestOptionsGet)
 							<!-- Nama contact akan ditampilkan di sini -->
 						</td>	
                         <td style="text-align: center; vertical-align: middle">
-                            <p class="fw-normal mb-1">${values.status}</p>
+                            <p class="fw-normal mb-1">${getBadgePO(values.status)}</p>
                         </td>
                         <td style="text-align: center; vertical-align: middle">
 							<button type="button" class="btn btn-info" data-so-id="${values.id}">Detail</button>

@@ -60,10 +60,6 @@
                     <a href="../../dashboard.html">Home</a> / <a href="../inventory.html">Inventory</a> / Received Transfer In
                 </h5>
                 <h1 class="h3 mb-3"><b>Received Transfer In</b></h1>
-                    <div class="col-md-6 mb-3">
-                        <input type="hidden" id="titleTextBox" disabled>
-                        <input type="hidden" id="filenameTextBox">
-                    </div>
                     <div class="row">
                         <div class="col-12">
                         <form>
@@ -76,6 +72,7 @@
                                     class="form-control"
                                     id="stokRib"
                                     name="stokRib"
+                                    placeholder="Masukkan Stok Rib (Kg)"
                                 />
 
                                 <div class="row mt-1">
@@ -87,6 +84,7 @@
                                             class="form-control"
                                             id="stokRoll"
                                             name="stokRoll"
+                                            placeholder="Masukkan Stok (Roll)"
                                         />
                                     </div>
                                     <div class="col-md-6">
@@ -97,6 +95,7 @@
                                             class="form-control"
                                             id="stokKg"
                                             name="stokKg"
+                                            placeholder="Masukkan Stok (Kg)"
                                         />
                                     </div>
                                 </div>
@@ -111,10 +110,10 @@
                                 />
 
                                 <!-- Inputan Status Transfer -->
-                                <h5 class="card-title mt-2">Status Transfer</h5>
+                                <!-- <h5 class="card-title mt-2">Status Transfer</h5>
                                 <select class="form-select" id="listStatus" aria-label="Pilih Opsi" disabled>
                                     <option value="received" selected>Received</option>
-                                </select>
+                                </select> -->
 
                                 <!-- Button Submit -->
                                 <div
@@ -125,9 +124,9 @@
                                 ">
                                 <button
                                     type="button"
-                                    class="btn btn-primary"
+                                    class="btn btn-warning"
                                     id="submitButton">
-                                    Simpan
+                                    Received
                                 </button>
                                 </div>
                             </div>

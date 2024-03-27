@@ -59,8 +59,6 @@ fetch(GetSalesOrderById, requestOptionsGet)
     document.getElementById('skuInput').value = data.data.sku;
     document.getElementById('tanggalInput').value = data.data.date;
     document.getElementById('deskripsiInput').value = data.data.description;
-    document.getElementById('inputHrefPO').value = data.data.no_po;
-    document.getElementById('listStatus').value = data.data.status;
     document.getElementById('brokerFeeInput').value = data.data.broker_fee;
 })
 .catch(error => console.error('Error:', error));
