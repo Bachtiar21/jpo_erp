@@ -186,7 +186,7 @@ submitButton.addEventListener('click', () => {
                             timer: 1500,
                             showConfirmButton: false
                         }).then(() => {
-                            window.location.href = "sales_so_list.view"
+                            window.location.href = "sales_so_list_view.html"
                         });
                     } else {
                         Swal.fire({

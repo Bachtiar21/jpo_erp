@@ -9,21 +9,30 @@ export let tokenGithub = "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";
 
 // Membuat objek konfigurasi untuk permintaan POST
 export let requestOptionsPost = {
-  method: 'POST',
-  headers: {'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json'}
+  method: "POST",
+  headers: {
+    Authorization: `Bearer ${token}`,
+    "Content-Type": "application/json",
+  },
 };
 
 // Membuat objek konfigurasi untuk permintaan GET
 export let requestOptionsGet = {
-  method : 'GET',
-  headers : {'Authorization': `Bearer ${token}`,'Content-Type': 'application/json'}
-}
+  method: "GET",
+  headers: {
+    Authorization: `Bearer ${token}`,
+    "Content-Type": "application/json",
+  },
+};
 
 // Membuat objek konfigurasi untuk permintaan DELETE
 export let requestOptionsDelete = {
-  method : 'DELETE',
-  headers : {'Authorization': `Bearer ${token}`,'Content-Type': 'application/json'}
-}
+  method: "DELETE",
+  headers: {
+    Authorization: `Bearer ${token}`,
+    "Content-Type": "application/json",
+  },
+};
 
 // Endpoint Get All
 export let UrlGetAllUser = "api/auth/users";
@@ -85,7 +94,8 @@ export let UrlLogoutUser = "api/auth/logout";
 export let UrlPostToken = "api/auth/token/c";
 export let UrlPostContact = "api/auth/contact";
 export let UrlPostPurchaseOrder = "api/auth/purchase-order";
-export let UrlPostFotoGithub = "https://api.github.com/repos/Bachtiar21/jpo_erp_adm/contents/static/fotoinput";
+export let UrlPostFotoGithub =
+  "https://api.github.com/repos/Bachtiar21/jpo_erp_adm/contents/static/fotoinput";
 export let UrlPostTransferIn = "api/auth/inventory/transfer-in";
 export let UrlPostSalesOrder = "api/auth/sales-order";
 export let UrlPostStock = "api/auth/purchase-order";

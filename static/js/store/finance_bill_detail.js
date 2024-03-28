@@ -1,9 +1,11 @@
-import { BaseUrl, UrlGetBillById, UrlGetByIdContact, requestOptionsGet } from "../controller/template.js";
+import { BaseUrl, UrlGetBillById, UrlGetByIdContact, UrlGetBankById, requestOptionsGet } from "../controller/template.js";
 
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
 const BillById = BaseUrl + UrlGetBillById + `/${id}`;
 const GetContactById = BaseUrl + UrlGetByIdContact;
+const GetBankById = BaseUrl + UrlGetBankById;
+
 
 // Pengkondisian ketika klik button Paid
 document.getElementById("paidButton").addEventListener("click", function() {
@@ -29,6 +31,8 @@ fetch(BillById, requestOptionsGet)
 .then(response => response.json())
 .then(data => {
     const contactId = data.data.contact_id;
+    const rekeningId = data.data.bank_id;
+
             
     // Fetch data kontak
     fetch(GetContactById + `/${contactId}`, requestOptionsGet)
@@ -40,10 +44,23 @@ fetch(BillById, requestOptionsGet)
             }
     });
 
+    // Fetch data Bank
+    fetch(GetBankById + `/${rekeningId}`, requestOptionsGet)
+        .then(response => response.json())
+        .then(bankData => {
+            if (bankData && bankData.data) {
+                const bankName = bankData.data.Bank;
+                document.getElementById("rekeningInput").value = bankName;
+            }
+    });
+
     // Slicing Waktu Transaksi
     const createdAt = new Date(data.data.created_at);
     const formattedDate = createdAt.toISOString().split('T')[0];
 	document.getElementById("dateInput").value = formattedDate;
     document.getElementById("jumlahInput").value = data.data.bill_price;
+    document.getElementById("paymentInput").value = data.data.payment;
+
+    
 })
 .catch(error => console.error('Error:', error));

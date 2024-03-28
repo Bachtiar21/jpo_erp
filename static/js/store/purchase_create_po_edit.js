@@ -41,6 +41,8 @@ fetch(GetPurchaseOrderById, requestOptionsGet)
     document.getElementById('skuInput').value = data.data.sku;
     document.getElementById('tanggalInput').value = data.data.date;
     document.getElementById('deskripsiInput').value = data.data.description;
+    document.getElementById('hargaInput').value = data.data.price;
+
 })
 .catch(error => console.error('Error:', error));
 

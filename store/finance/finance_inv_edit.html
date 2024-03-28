@@ -2,187 +2,177 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
-	<meta name="author" content="AdminKit">
-	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
+    <meta name="author" content="AdminKit">
+    <meta name="keywords"
+        content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
-	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link rel="shortcut icon" href="../../static/img/icons/icon-48x48.png" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="shortcut icon" href="../../static/img/icons/icon-48x48.png" />
 
-	<link rel="canonical" href="https://demo-basic.adminkit.io/" />
+    <link rel="canonical" href="https://demo-basic.adminkit.io/" />
 
-	<title>JPO ERP</title>
+    <title>JPO ERP</title>
 
-	<link href="../../static/css/app.css" rel="stylesheet">
+    <link href="../../static/css/app.css" rel="stylesheet">
     <link rel="stylesheet" href="../../static/css/style.css">
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
-	<div class="wrapper">
-		<!-- Sidebar Start -->
-		<div id="sidebar-container"></div>
-		<!-- Sidebar End -->
+    <div class="wrapper">
+        <!-- Sidebar Start -->
+        <div id="sidebar-container"></div>
+        <!-- Sidebar End -->
 
-		<div class="main">
-			<!-- Navbar Start -->
-			<nav class="navbar navbar-expand navbar-light navbar-bg">
+        <div class="main">
+            <!-- Navbar Start -->
+            <nav class="navbar navbar-expand navbar-light navbar-bg">
                 <a class="sidebar-toggle js-sidebar-toggle">
                     <i class="hamburger align-self-center"></i>
-                  </a>
-                          <div class="navbar-collapse collapse">
-                              <ul class="navbar-nav navbar-align">					
-                                  <li class="nav-item dropdown">
-                                      <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
-                          <i class="align-middle" data-feather="settings"></i>
-                        </a>
-                
-                                      <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                          <img src="https://bachtiar21.github.io/jpo_erp/static/img/avatars/avatar.jpg" class="avatar img-fluid rounded-circle me-1" /> <span class="text-dark" id="namaUser"></span>
-                        </a>
-                                      <div class="dropdown-menu dropdown-menu-end">
-                                          <a class="dropdown-item" href="../../profil.html">Lihat Profil</a>
-                                          <a class="dropdown-item" id="logoutButton">Log out</a>
-                                      </div>
-                                  </li>
-                              </ul>
-                          </div>
-			</nav>
-			<!-- Navbar End -->
+                </a>
+                <div class="navbar-collapse collapse">
+                    <ul class="navbar-nav navbar-align">
+                        <li class="nav-item dropdown">
+                            <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#"
+                                data-bs-toggle="dropdown">
+                                <i class="align-middle" data-feather="settings"></i>
+                            </a>
+
+                            <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
+                                data-bs-toggle="dropdown">
+                                <img src="https://bachtiar21.github.io/jpo_erp/static/img/avatars/avatar.jpg"
+                                    class="avatar img-fluid rounded-circle me-1" /> <span class="text-dark"
+                                    id="namaUser"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a class="dropdown-item" href="../../profil.html">Lihat Profil</a>
+                                <a class="dropdown-item" id="logoutButton">Log out</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!-- Navbar End -->
 
             <!-- Content Start -->
             <main class="content">
                 <div class="container-fluid p-0">
-                <h5 class="right-aligned" style="float: right">
-                    <a href="../../dashboard.html">Home</a> / <a href="../finance.html">Fiannce</a> / Update Invoice
-                </h5>
-                <h1 class="h3 mb-3"><b>Update Invoice</b></h1>
+                    <h5 class="right-aligned" style="float: right">
+                        <a href="../../dashboard.html">Home</a> / <a href="../finance.html">Fiannce</a> / Update Invoice
+                    </h5>
+                    <h1 class="h3 mb-3"><b>Update Invoice</b></h1>
                     <div class="col-md-6 mb-3">
                         <input type="hidden" id="titleTextBox" disabled>
                         <input type="hidden" id="filenameTextBox">
                     </div>
                     <div class="row">
                         <div class="col-12">
-                        <form>
-                            <div class="card">
-                            <div class="card-body">
-                                <!-- Inputan Customer -->
-                                <h5 class="card-title mt-2">Customer</h5>
-                                <input
-                                type="text"
-                                class="form-control"
-                                id="customerInput"
-                                name="customerInput"
-                                placeholder="Masukkan Customer"
-                                disabled/>
+                            <form>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <!-- Inputan Customer -->
+                                        <h5 class="card-title mt-2">Customer</h5>
+                                        <input type="text" class="form-control" id="customerInput" name="customerInput"
+                                            placeholder="Masukkan Customer" disabled />
 
-                                <div class="row mt-1">
-                                    <div class="col-md-6">
-                                        <!-- Inputan Date -->
-                                        <h5 class="card-title mt-2">Date</h5>
-                                        <input
-                                            type="date"
-                                            class="form-control"
-                                            id="dateInput"
-                                            name="dateInput"
-                                            placeholder="Masukkan Date"
-                                            disabled/>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <!-- Inputan Due Date -->
-                                        <h5 class="card-title mt-2">Due Date</h5>
-                                        <input
-                                            type="date"
-                                            class="form-control"
-                                            id="dueDateInput"
-                                            name="dueDateInput"
-                                            placeholder="Masukkan Due Date"
-                                            required/>
-                                    </div>
-                                </div>
-                                
-                                <!-- Inputan Broker -->
-                                <h5 class="card-title mt-2">Broker</h5>
-                                <input
-                                type="text"
-                                class="form-control"
-                                id="brokerInput"
-                                name="brokerInput"
-                                placeholder="Masukkan Broker"
-                                disabled/>
+                                        <div class="row mt-1">
+                                            <div class="col-md-6">
+                                                <!-- Inputan Date -->
+                                                <h5 class="card-title mt-2">Date</h5>
+                                                <input type="date" class="form-control" id="dateInput" name="dateInput"
+                                                    placeholder="Masukkan Date" disabled />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <!-- Inputan Due Date -->
+                                                <h5 class="card-title mt-2">Due Date</h5>
+                                                <input type="date" class="form-control" id="dueDateInput"
+                                                    name="dueDateInput" placeholder="Masukkan Due Date" required />
+                                            </div>
+                                        </div>
 
-                                <!-- Inputan Amount -->
-                                <h5 class="card-title mt-2">Amount</h5>
-                                <input
-                                type="number"
-                                class="form-control"
-                                id="amountInput"
-                                name="amountInput"
-                                placeholder="Masukkan Amount"
-                                required/>
+                                        <!-- Inputan Broker -->
+                                        <h5 class="card-title mt-2">Broker</h5>
+                                        <input type="text" class="form-control" id="brokerInput" name="brokerInput"
+                                            placeholder="Masukkan Broker" disabled />
 
-                                <!-- Inputan Deskripsi -->
-                                <h5 class="card-title mt-2">Deskripsi</h5>
-                                <textarea class="form-control" name="deskripsiInput" id="deskripsiInput" 
-                                cols="30" rows="3" placeholder="Masukkan Deskripsi"></textarea>
-                                
-                                <!-- Button Submit -->
-                                <div
-                                style="
+                                        <!-- Inputan Amount -->
+                                        <h5 class="card-title mt-2">Amount</h5>
+                                        <input type="number" class="form-control" id="amountInput" name="amountInput"
+                                            placeholder="Masukkan Amount" disabled />
+                                        <!-- Inputan Jumlah -->
+                                        <h5 class="card-title mt-2">Payment</h5>
+                                        <input type="number" class="form-control" id="paymentInput" name="paymentInput"
+                                            disabled />
+
+                                        <!-- Inputan Rekening -->
+                                        <h5 class="card-title mt-2">Rekening</h5>
+                                        <input type="text" class="form-control" id="rekeningInput" name="rekeningInput"
+                                            disabled />
+
+                                        <!-- Inputan Amount -->
+                                        <h5 class="card-title mt-2">Broker Fee</h5>
+                                        <input type="number" class="form-control" id="brokerFeeInput"
+                                            name="brokerFeeInput" />
+
+                                        <!-- Inputan Deskripsi -->
+                                        <!-- <h5 class="card-title mt-2">Deskripsi</h5>
+                                        <textarea class="form-control" name="deskripsiInput" id="deskripsiInput"
+                                            cols="30" rows="3" placeholder="Masukkan Deskripsi"></textarea> -->
+
+                                        <!-- Button Submit -->
+                                        <div style="
                                     position: relative;
                                     text-align: right;
                                     margin-top: 20px;
                                 ">
-                                <a href="../finance.html"
-                                    type="button"
-                                    class="btn btn-info">
-                                    Cancel
-                                </a>
-                                <button
-                                    type="button"
-                                    class="btn btn-primary"
-                                    id="submitButton">
-                                    Simpan
-                                </button>
+                                            <a href="../finance.html" type="button" class="btn btn-info">
+                                                Cancel
+                                            </a>
+                                            <button type="button" class="btn btn-primary" id="submitButton">
+                                                Simpan
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            </div>
-                        </form>
+                            </form>
                         </div>
                     </div>
                 </div>
             </main>
             <!-- Content End -->
 
-			<!-- Footer Start -->
-			<footer class="footer">
-				<div class="container-fluid">
-					<div class="row text-muted">
-						<div class="col-6 text-start">
-							<p class="mb-0">
-								<a class="text-muted" href="#" target="_blank"><strong>JPO</strong></a> - <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>ERP</strong></a>								&copy;
-							</p>
-						</div>
-					</div>
-				</div>
-			</footer>
+            <!-- Footer Start -->
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row text-muted">
+                        <div class="col-6 text-start">
+                            <p class="mb-0">
+                                <a class="text-muted" href="#" target="_blank"><strong>JPO</strong></a> - <a
+                                    class="text-muted" href="https://adminkit.io/"
+                                    target="_blank"><strong>ERP</strong></a> &copy;
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
             <!-- Footer End -->
-		</div>
-	</div>
+        </div>
+    </div>
 
     <!-- Spinner Start -->
-	<div class="loader"></div>
-	<!-- Spinner End -->
-	<script src="../../static/js/store/finance_inv_edit.js" type="module"></script>
-	<script src="../../static/js/style/spinner.js" defer></script>
+    <div class="loader"></div>
+    <!-- Spinner End -->
+    <script src="../../static/js/store/finance_inv_edit.js" type="module"></script>
+    <script src="../../static/js/style/spinner.js" defer></script>
     <script src="../../static/js/controller/logout.js" type="module"></script>
     <script src="../../static/js/navbar.js" type="module"></script>
-	<script src="../../static/js/app.js"></script>
-	<script src="../../static/theme/bar/sidebar.js" type="module"></script>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../../static/js/app.js"></script>
+    <script src="../../static/theme/bar/sidebar.js" type="module"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </body>
 

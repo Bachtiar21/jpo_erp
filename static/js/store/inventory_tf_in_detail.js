@@ -63,5 +63,6 @@ fetch(GetTransferInById, requestOptionsGet)
     document.getElementById('deskripsiInput').value = data.data.description;
     document.getElementById('inputHrefPO').value = data.data.no_po;
     document.getElementById('listStatus').value = data.data.status;
+
 })
 .catch(error => console.error('Error:', error));
