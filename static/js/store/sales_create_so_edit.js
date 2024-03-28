@@ -52,6 +52,26 @@ fetch(GetSalesOrderById, requestOptionsGet)
     // Populate form fields with data
     document.getElementById('nomorSoInput').value = data.data.no_so;
     document.getElementById('skuInput').value = data.data.sku;
-    document.getElementById('tanggalInput').value = data.data.date;
+    document.getElementById('stokInput').value = `Stok Roll : ${data.data.stock_roll}, Stok Kg : ${data.data.stock_kg}, Stok Rib : ${data.data.stock_rib}`;
+    document.getElementById('hargaJualInput').value = data.data.price;
+
+    // Check if broker and broker_fee exist
+    const brokerId = data.data.broker;
+    const brokerFee = data.data.broker_fee;
+
+    if (brokerId && brokerFee) {
+        // Set radio button to "Ya"
+        document.querySelector('input[value="true"][name="radios-example"]').checked = true;
+        // Show broker input
+        document.querySelector('.broker').style.display = 'block';
+        // Set selected broker
+        document.getElementById('listBroker').value = brokerId;
+        // Set jenis broker fee to "Manual Fee"
+        document.querySelector('input[value="manualFee"][name="inline-radios-example"]').checked = true;
+        // Show manual fee input
+        document.querySelector('.manualFeeInput').style.display = 'block';
+        // Set manual fee value
+        document.getElementById('manualFeeInput').value = brokerFee;
+    }
 })
 .catch(error => console.error('Error:', error));

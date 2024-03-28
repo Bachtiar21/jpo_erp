@@ -1,6 +1,7 @@
 import { CihuyId } from "https://c-craftjs.github.io/element/element.js";
 import { CihuyDomReady, CihuyQuerySelector } from "https://c-craftjs.github.io/table/table.js";
 import { BaseUrl, UrlGetAllInvoice, UrlGetByIdContact, UrlGetAllBill, requestOptionsGet } from "../controller/template.js";
+import { getBadgePayment } from "../style/badge.js";
 
 document.addEventListener('DOMContentLoaded', function() {
     const selectMenuFinance = document.getElementById('selectMenuFinance');
@@ -87,12 +88,11 @@ fetch(AllInvoice, requestOptionsGet)
                             <p class="fw-normal mb-1"></p>
                         </td>
                         <td style="text-align: center; vertical-align: middle">
-                            <p class="fw-normal mb-1">${values.paid_status}</p>
+                            <p class="fw-normal mb-1">${getBadgePayment(values.paid_status)}</p>
                         </td>
                         <td style="text-align: center; vertical-align: middle">
 							<button type="button" class="btn btn-info" data-inv-id="${values.id}">Detail</button>	
-                            <button type="button" class="btn btn-warning" data-inv-id="${values.id}">Update</button>	
-                            <button type="button" class="btn btn-danger" data-inv-id="${values.id}">Delete</button>
+                            <button type="button" class="btn btn-warning" data-inv-id="${values.id}">Update</button>
                         </td>
                     </tr>`;
 		});
@@ -210,12 +210,11 @@ fetch(AllBill, requestOptionsGet)
                             <p class="fw-normal mb-1"></p>
                         </td>
                         <td style="text-align: center; vertical-align: middle">
-                            <p class="fw-normal mb-1">${values.paid_status}</p>
+                            <p class="fw-normal mb-1">${getBadgePayment(values.paid_status)}</p>
                         </td>
                         <td style="text-align: center; vertical-align: middle">
-							<button type="button" class="btn btn-info" data-bill-id="${values.id}">Detail</button>	
-                            <button type="button" class="btn btn-warning" data-bill-id="${values.id}">Update</button>	
-                            <button type="button" class="btn btn-danger" data-bill-id="${values.id}">Delete</button>
+							<button id="detailBill" type="button" class="btn btn-info" data-bill-id="${values.id}">Detail</button>	
+                            <button id="updateBill" type="button" class="btn btn-warning" data-bill-id="${values.id}">Update</button>	
                         </td>
                     </tr>`;
 		});
@@ -225,7 +224,7 @@ fetch(AllBill, requestOptionsGet)
 		updatePagination();
 
 		// Menambahkan event listener untuk button "Update Data"
-		const updateBill = document.querySelectorAll('.btn-warning');
+		const updateBill = document.querySelectorAll('#updateBill');
 		updateBill.forEach(button => {
 			button.addEventListener('click', (event) => {
 				const id = event.target.getAttribute('data-bill-id');
@@ -234,7 +233,7 @@ fetch(AllBill, requestOptionsGet)
 		});
 		
 		// Menambahkan event listener untuk button "detail"
-		const detailBill = document.querySelectorAll('.btn-info');
+		const detailBill = document.querySelectorAll('#detailBill');
 		detailBill.forEach(button => {
 			button.addEventListener('click', (event) => {
 				const id = event.target.getAttribute('data-bill-id');

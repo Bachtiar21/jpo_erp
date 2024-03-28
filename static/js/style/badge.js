@@ -51,3 +51,16 @@ export function getBadgePO(status) {
       return "<span>Tidak Ada Status</span>";
   }
 }
+
+export function getBadgePayment(status) {
+  switch (status) {
+    case 'unpaid':
+      return '<span class="badge-primary" style="font-size: 10px; background-color: #f0ad4e; color: white; padding: 5px 10px; border-radius: 5px;">Unpaid</span>';
+    case 'paid':
+      return '<span class="badge-yellow" style="font-size: 10px; background-color: #5bc0de; color: white; padding: 5px 10px; border-radius: 5px;">Paid</span>';
+    case 'done':
+      return '<span class="badge-success" style="font-size: 10px; background-color: #22bb33; color: white; padding: 5px 10px; border-radius: 5px;">Done</span>';
+    default:
+      return "<span>Tidak Ada Status</span>";
+  }
+}
