@@ -114,6 +114,24 @@
                                 placeholder="Masukkan Jumlah"
                                 disabled/>
 
+                                <!-- Inputan Jumlah -->
+                                <h5 class="card-title mt-2">Payment</h5>
+                                <input
+                                type="number"
+                                class="form-control"
+                                id="paymentInput"
+                                name="paymentInput"
+                                disabled/>
+
+                                <!-- Inputan Rekening -->
+                                <h5 class="card-title mt-2">Rekening</h5>
+                                <input
+                                type="text"
+                                class="form-control"
+                                id="rekeningInput"
+                                name="rekeningInput"
+                                disabled/>
+
                                 <!-- Inputan Deskripsi -->
                                 <h5 class="card-title mt-2">Deskripsi</h5>
                                 <textarea class="form-control" name="deskripsiInput" id="deskripsiInput" 
@@ -122,8 +140,7 @@
                                 <!-- Button Submit -->
                                 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
                                     <div>
-                                        <button type="button" class="btn btn-warning" id="paidButton">Paid</button>
-                                        <button type="button" class="btn btn-success" id="doneButton">Done</button>
+                                        <button id="paidButton" type="button" class="btn btn-warning" id="paidButton">Paid</button>
                                     </div>
                                     <div>
                                         <a href="../finance.html"

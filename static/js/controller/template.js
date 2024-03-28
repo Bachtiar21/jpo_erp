@@ -45,6 +45,7 @@ export let UrlGetDataBySKU = "/api/auth/sales-order";
 export let UrlGetAllTransferOut = "api/auth/inventory/transfer-out/i/";
 export let UrlGetAllInvoice = "api/auth/invoices";
 export let UrlGetAllBill = "api/auth/bills";
+export let UrlGetAllCommission = "api/auth/comissions";
 
 // Endpoint Get By Id
 export let UrlGetConvectionById = "api/auth/convection";
@@ -63,6 +64,7 @@ export let UrlGetSalesOrderById = "api/auth/sales-order";
 export let UrlGetTransferOutById = "api/auth/inventory/transfer-out";
 export let UrlGetInvoiceById = "api/auth/invoice";
 export let UrlGetBillById = "api/auth/bill";
+export let UrlGetCommissionById = "api/auth/commission";
 
 // Endpoint Post
 export let UrlPostLogin = "api/auth/login";
@@ -101,6 +103,9 @@ export let UrlPutTransferIn = "api/auth/inventory/transfer-in/u";
 export let UrlReceivedTransferIn = "api/auth/inventory/transfer-in";
 export let UrlPutSalesOrder = "api/auth/sales-order/u";
 export let UrlSentTransferOut = "api/auth/inventory/transfer-out";
+export let UrlPaidBill = "api/auth/bill";
+export let UrlPaidInvoice = "api/auth/invoice";
+export let UrlPaidCommission = "api/auth/commission";
 
 // Endpoint Delete
 export let UrlDeleteUser = "api/auth/user/d";

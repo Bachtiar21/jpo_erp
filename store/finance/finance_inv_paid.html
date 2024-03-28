@@ -57,22 +57,21 @@
             <main class="content">
                 <div class="container-fluid p-0">
                 <h5 class="right-aligned" style="float: right">
-                    <a href="../../dashboard.html">Home</a> / <a href="../finance.html">Finance</a> / Detail Komisi
+                    <a href="../../dashboard.html">Home</a> / <a href="../finance.html">Finance</a> / Paid Invoice
                 </h5>
-                <h1 class="h3 mb-3"><b>Detail Komisi</b></h1>
+                <h1 class="h3 mb-3"><b>Paid Invoice</b></h1>
                     <div class="row">
                         <div class="col-12">
                         <form>
                             <div class="card">
                             <div class="card-body">
-                                <!-- Inputan Vendor -->
-                                <h5 class="card-title mt-2">Vendor</h5>
+                                <!-- Inputan Customer -->
+                                <h5 class="card-title mt-2">Customer</h5>
                                 <input
                                 type="text"
                                 class="form-control"
-                                id="vendorInput"
-                                name="vendorInput"
-                                placeholder="Masukkan Vendor"
+                                id="customerInput"
+                                name="customerInput"
                                 disabled/>
 
                                 <div class="row mt-1">
@@ -84,7 +83,6 @@
                                             class="form-control"
                                             id="dateInput"
                                             name="dateInput"
-                                            placeholder="Masukkan Date"
                                             disabled/>
                                     </div>
                                     <div class="col-md-6">
@@ -95,10 +93,27 @@
                                             class="form-control"
                                             id="dueDateInput"
                                             name="dueDateInput"
-                                            placeholder="Masukkan Due Date"
                                             disabled/>
                                     </div>
                                 </div>
+                                
+                                <!-- Inputan Broker -->
+                                <h5 class="card-title mt-2">Broker</h5>
+                                <input
+                                type="text"
+                                class="form-control"
+                                id="brokerInput"
+                                name="brokerInput"
+                                disabled/>
+
+                                <!-- Inputan Amount -->
+                                <h5 class="card-title mt-2">Amount</h5>
+                                <input
+                                type="number"
+                                class="form-control"
+                                id="amountInput"
+                                name="amountInput"
+                                disabled/>
 
                                 <!-- Inputan Jumlah -->
                                 <h5 class="card-title mt-2">Payment</h5>
@@ -107,16 +122,16 @@
                                 class="form-control"
                                 id="paymentInput"
                                 name="paymentInput"
-                                disabled/>
+                                />
 
                                 <!-- Inputan Rekening -->
                                 <h5 class="card-title mt-2">Rekening</h5>
-                                <input
-                                type="text"
-                                class="form-control"
-                                id="rekeningInput"
-                                name="rekeningInput"
-                                disabled/>
+                                <select
+                                    class="form-select"
+                                    id="listRekening"
+                                    aria-label="Pilih Rekening">
+                                    <option selected>Pilih Rekening</option>
+                                </select>
 
                                 <!-- Inputan Deskripsi -->
                                 <h5 class="card-title mt-2">Deskripsi</h5>
@@ -126,9 +141,6 @@
                                 <!-- Button Submit -->
                                 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
                                     <div>
-                                        <button type="button" class="btn btn-warning" id="paidButton">Paid</button>
-                                    </div>
-                                    <div>
                                         <a href="../finance.html"
                                             type="button"
                                             class="btn btn-info">
@@ -137,8 +149,8 @@
                                         <button
                                             type="button"
                                             class="btn btn-primary"
-                                            id="editButton">
-                                            Edit
+                                            id="submitButton">
+                                            Paid
                                         </button>
                                     </div>
                                 </div>
@@ -170,10 +182,9 @@
     <!-- Spinner Start -->
 	<div class="loader"></div>
 	<!-- Spinner End -->
-	
+    <script src="../../static/js/store/finance_inv_paid.js" type="module"></script>
 	<script src="../../static/js/style/spinner.js" defer></script>
     <script src="../../static/js/controller/logout.js" type="module"></script>
-    <script src="../../static/js/store/finance_com_detail.js" type="module"></script>
     <script src="../../static/js/navbar.js" type="module"></script>
 	<script src="../../static/js/app.js"></script>
 	<script src="../../static/theme/bar/sidebar.js" type="module"></script>
