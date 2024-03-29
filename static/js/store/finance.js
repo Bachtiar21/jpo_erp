@@ -59,15 +59,6 @@ CihuyDomReady(() => {
     .then((data) => {
         let tableData = "";
         data.data.map((values) => {
-            let dataContact = "";
-            // Untuk Fetch Data Contact
-            fetch(ContactById + `/${values.contact_id}`, requestOptionsGet)
-                .then(response => response.json())
-                .then(contactData => {
-                    dataContact = contactData.data.name;
-                    document.getElementById(`contactCell${values.id}`).textContent = dataContact;
-                });
-
             // Mendapatkan tanggal dari created_at
             const createdDate = new Date(values.created_at);
             const formattedDate = `${createdDate.getDate()}-${createdDate.getMonth() + 1}-${createdDate.getFullYear()}`;
@@ -88,8 +79,9 @@ CihuyDomReady(() => {
             tableData += `
                         <tr>
                         <td hidden></td>
-                        <td id="contactCell${values.id}" style="text-align: center; vertical-align: middle">
-                            <!-- Nama contact akan ditampilkan di sini -->
+                       
+                        <td style="text-align: center; vertical-align: middle">
+                            <p class="fw-normal mb-1">${values.contact.name}</p>
                         </td>
                         <td style="text-align: center; vertical-align: middle">
                             <p class="fw-normal mb-1">${values.no_invoice}</p>
@@ -182,7 +174,6 @@ CihuyDomReady(() => {
 	let halamannow = 1;
 
     const AllBill = BaseUrl + UrlGetAllBill;
-    const ContactById = BaseUrl + UrlGetByIdContact;
 
 fetch(AllBill, requestOptionsGet)
 	.then((result) => {
@@ -191,15 +182,6 @@ fetch(AllBill, requestOptionsGet)
 	.then((data) => {
 		let tableData = "";
 		data.data.map((values) => {
-            let dataContact = "";
-            // Untuk Fetch Data Contact
-            fetch(ContactById + `/${values.contact_id}`, requestOptionsGet)
-                .then(response => response.json())
-                .then(contactData => {
-                    dataContact = contactData.data.name;
-                    document.getElementById(`contactCell${values.id}`).textContent = dataContact;
-            });
-            
             // Mendapatkan tanggal dari created_at
             const createdDate = new Date(values.created_at);
             const formattedDate = `${createdDate.getDate()}-${createdDate.getMonth() + 1}-${createdDate.getFullYear()}`;
@@ -220,9 +202,9 @@ fetch(AllBill, requestOptionsGet)
 				tableData += `
                         <tr>
                         <td hidden></td>
-                        <td id="contactCell${values.id}" style="text-align: center; vertical-align: middle">
-							<!-- Nama contact akan ditampilkan di sini -->
-						</td>
+						<td style="text-align: center; vertical-align: middle">
+                            <p class="fw-normal mb-1">${values.contact.name}</p>
+                        </td>
 						<td style="text-align: center; vertical-align: middle">
                             <p class="fw-normal mb-1">${values.no_bill}</p>
                         </td>
@@ -314,7 +296,6 @@ CihuyDomReady(() => {
 	let halamannow = 1;
 
     const AllCommission = BaseUrl + UrlGetAllCommission;
-    const ContactById = BaseUrl + UrlGetByIdContact;
 
 fetch(AllCommission, requestOptionsGet)
 	.then((result) => {
@@ -323,15 +304,6 @@ fetch(AllCommission, requestOptionsGet)
 	.then((data) => {
 		let tableData = "";
 		data.data.map((values) => {
-            let dataContact = "";
-            // Untuk Fetch Data Contact
-            fetch(ContactById + `/${values.broker}`, requestOptionsGet)
-                .then(response => response.json())
-                .then(contactData => {
-                    dataContact = contactData.data.name;
-                    document.getElementById(`contactCell${values.id}`).textContent = dataContact;
-            });
-            
             // Mendapatkan tanggal dari created_at
             const createdDate = new Date(values.created_at);
 
@@ -351,9 +323,9 @@ fetch(AllCommission, requestOptionsGet)
 				tableData += `
                         <tr>
                         <td hidden></td>
-                        <td id="contactCell${values.id}" style="text-align: center; vertical-align: middle">
-							<!-- Nama contact akan ditampilkan di sini -->
-						</td>
+						<td style="text-align: center; vertical-align: middle">
+                            <p class="fw-normal mb-1">${values.broker_name}</p>
+                        </td>
 						<td style="text-align: center; vertical-align: middle">
                             <p class="fw-normal mb-1">${values.no_commision}</p>
                         </td>

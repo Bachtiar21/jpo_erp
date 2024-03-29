@@ -13,76 +13,59 @@ CihuyDomReady(() => {
 	let halamannow = 1;
 
     const AllSalesOrder = BaseUrl + UrlGetAllSalesOrder;
-	const ContactById = BaseUrl + UrlGetByIdContact;
-	const WarehouseByToken = BaseUrl + UrlGetWarehouseByIdByToken;
+	
 
-fetch(AllSalesOrder, requestOptionsGet)
-	.then((result) => {
-		return result.json();
-	})
-	.then((data) => {
+	fetch(AllSalesOrder, requestOptionsGet)
+	.then(result => result.json())
+	.then(data => {
 		let tableData = "";
-		data.data.map((values) => {
-			let dataContactOut = "";
-			let dataWarehouseOut = "";
-                // Untuk Fetch Data Contact
-                fetch(ContactById + `/${values.contact_id}`, requestOptionsGet)
-                    .then(response => response.json())
-                    .then(contactData => {
-                        dataContactOut = contactData.data.name;
-                        document.getElementById(`contactCellOut${values.id}`).textContent = dataContactOut;
-                });
-				// Untuk Fetch Data Warehouse
-                fetch(WarehouseByToken + `/${values.warehouse_id}`, requestOptionsGet)
-                    .then(response => response.json())
-                    .then(warehouseData => {
-                        dataWarehouseOut = warehouseData.data.name;
-                        document.getElementById(`warehouseCellOut${values.id}`).textContent = dataWarehouseOut;
-                });
+		data.data.forEach(values => {
+			const warehouseName = values.warehouse.name;
+			const contactName = values.contact.name;
+
 			tableData += `
-                        <tr>
-                        <td hidden></td>
-                        <td style="text-align: center; vertical-align: middle">
-                            <p class="fw-normal mb-1">${values.no_so}</p>
-                        </td>
-						<td id="warehouseCellOut${values.id}" style="text-align: center; vertical-align: middle">
-							<!-- Nama contact akan ditampilkan di sini -->
-						</td>
-                        <td id="contactCellOut${values.id}" style="text-align: center; vertical-align: middle">
-							<!-- Nama contact akan ditampilkan di sini -->
-						</td>	
-                        <td style="text-align: center; vertical-align: middle">
-                            <p class="fw-normal mb-1">${getBadgePO(values.status)}</p>
-                        </td>
-                        <td style="text-align: center; vertical-align: middle">
-							<button type="button" class="btn btn-info" data-so-id="${values.id}">Detail</button>
-                            <button type="button" class="btn btn-warning" data-so-id="${values.id}">Update</button>	
-                        </td>
-                    </tr>`;
+				<tr>
+					<td hidden></td>
+					<td style="text-align: center; vertical-align: middle">
+						<p class="fw-normal mb-1">${values.no_so}</p>
+					</td>
+					<td style="text-align: center; vertical-align: middle">
+						<p class="fw-normal mb-1">${warehouseName}</p>
+					</td>
+					<td style="text-align: center; vertical-align: middle">
+						<p class="fw-normal mb-1">${contactName}</p>
+					</td>
+					<td style="text-align: center; vertical-align: middle">
+						<p class="fw-normal mb-1">${getBadgePO(values.status)}</p>
+					</td>
+					<td style="text-align: center; vertical-align: middle">
+						<button type="button" class="btn btn-info" data-po-id="${values.id}">Detail</button>
+						<button type="button" class="btn btn-warning" data-po-id="${values.id}">Edit</button>	
+					</td>
+				</tr>`;
 		});
 		document.getElementById("tablebody").innerHTML = tableData;
 
 		displayData(halamannow);
 		updatePagination();
 
-		// Menambahkan event listener untuk button "Update Data"
-		const detailSoButtons = document.querySelectorAll('.btn-info');
-		detailSoButtons.forEach(button => {
+		// Menambahkan event listener untuk button "Detail Data"
+		const detailPOButtons = document.querySelectorAll('.btn-info');
+		detailPOButtons.forEach(button => {
 			button.addEventListener('click', (event) => {
-				const id = event.target.getAttribute('data-so-id');
-				window.location.href = `sales_so_list_detail.html?id=${id}`;
+				const id = event.target.getAttribute('data-po-id');
+				window.location.href = `purchase_po_detail.html?id=${id}`;
 			});
 		});
 
 		// Menambahkan event listener untuk button "Update Data"
-		const updateSoButtons = document.querySelectorAll('.btn-warning');
-		updateSoButtons.forEach(button => {
+		const updatePOButtons = document.querySelectorAll('.btn-warning');
+		updatePOButtons.forEach(button => {
 			button.addEventListener('click', (event) => {
-				const id = event.target.getAttribute('data-so-id');
-				window.location.href = `sales_create_so_edit.html?id=${id}`;
+				const id = event.target.getAttribute('data-po-id');
+				window.location.href = `purchase_create_po_edit.html?id=${id}`;
 			});
 		});
-		
 	})
 	.catch(error => {
 		console.log('error', error);
