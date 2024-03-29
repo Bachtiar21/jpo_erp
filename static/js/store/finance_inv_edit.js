@@ -19,6 +19,12 @@ fetch(InvoiceById, requestOptionsGet)
     const contactId = data.data.contact_id;
     const brokerId = data.data.broker;
     const bankId = data.data.bank_id;
+    const sellPrice = data.data.sell_price;
+    const payment = data.data.payment;
+    const remainingPayment = sellPrice - payment;
+
+    // Menentukan teks yang akan ditampilkan pada elemen h5
+    const ketPayment = `Informasi : Sell Price yang harus dibayar (${sellPrice}), Payment yang sudah dibayar (${payment}), dan Sisa yang harus dibayar (${remainingPayment})`;
 
     // Fetch data kontak
     fetch(GetContactById + `/${contactId}`, requestOptionsGet)
@@ -51,17 +57,23 @@ fetch(InvoiceById, requestOptionsGet)
     });
 
     // Populate form fields with data
-    const createdAt = new Date(data.data.created_at);
-    const formattedDate = createdAt.toISOString().split("T")[0];
-    document.getElementById("dateInput").value = formattedDate;
-    // Pengkondisia untuk Broker
-    // if (data.data.broker === null) {
-    //   document.getElementById("brokerInput").value = "Tidak Memilih Broker";
-    // } else {
-    //   document.getElementById("brokerInput").value = data.data.name;
-    // }
+    // Mendapatkan tanggal dari created_at
+    const createdDate = new Date(data.data.created_at);
+    const today = new Date();
+    const timeDifference = Math.abs(today - createdDate);
+    const differenceInDays = Math.ceil(timeDifference / (1000 * 3600 * 24));
+
+    // Menentukan nilai Aging berdasarkan status Paid atau tidak
+    let aging;
+    if (data.data.paid_status === 'paid') {
+        aging = 0;
+    } else {
+        aging = differenceInDays;
+    }
+    document.getElementById("dateInput").value = aging + " Hari";
     document.getElementById("amountInput").value = data.data.sell_price;
     document.getElementById("paymentInput").value = data.data.payment;
     document.getElementById("brokerFeeInput").value = data.data.broker_fee;
+    document.getElementById("ketPayment").innerText = ketPayment;
   })
   .catch((error) => console.error("Error:", error));

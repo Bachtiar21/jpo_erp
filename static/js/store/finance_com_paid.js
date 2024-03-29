@@ -26,6 +26,12 @@ fetch(CommissionById, requestOptionsGet)
     const brokerId = data.data.broker;
     const bankId = data.data.bank_id;
     commissionData = data.data;
+    const sellPrice = data.data.sell_price;
+    const payment = data.data.payment;
+    const remainingPayment = sellPrice - payment;
+
+    // Menentukan teks yang akan ditampilkan pada elemen h5
+    const ketPayment = `Informasi : Sell Price yang harus dibayar (${sellPrice}), Payment yang sudah dibayar (${payment}), dan Sisa yang harus dibayar (${remainingPayment})`;
 
     // Fetch data Broker
     fetch(GetContactById + `/${brokerId}`, requestOptionsGet)
@@ -52,11 +58,23 @@ fetch(CommissionById, requestOptionsGet)
         document.getElementById("rekeningNow").removeAttribute("hidden");
     }
 
-    // Slicing Waktu Transaksi
-    const createdAt = new Date(data.data.created_at);
-    const formattedDate = createdAt.toISOString().split("T")[0];
-    document.getElementById("dateInput").value = formattedDate;
-    document.getElementById("paymentInput").value = data.data.broker_fee;
+    // Mendapatkan tanggal dari created_at
+    const createdDate = new Date(data.data.created_at);
+    const today = new Date();
+    const timeDifference = Math.abs(today - createdDate);
+    const differenceInDays = Math.ceil(timeDifference / (1000 * 3600 * 24));
+
+    // Menentukan nilai Aging berdasarkan status Paid atau tidak
+    let aging;
+    if (data.data.paid_status === 'paid') {
+        aging = 0;
+    } else {
+        aging = differenceInDays;
+    }
+
+    // Populate form fields with data
+    document.getElementById("dateInput").value = aging + " Hari";
+    document.getElementById("ketPayment").innerText = ketPayment;
   })
   .catch((error) => console.error("Error:", error));
 

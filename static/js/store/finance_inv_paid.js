@@ -26,6 +26,12 @@ fetch(InvoiceById, requestOptionsGet)
     const contactId = data.data.contact_id;
     const brokerId = data.data.broker;
     const bankId = data.data.bank_id;
+    const sellPrice = data.data.sell_price;
+    const payment = data.data.payment;
+    const remainingPayment = sellPrice - payment;
+
+    // Menentukan teks yang akan ditampilkan pada elemen h5
+    const ketPayment = `Informasi : Sell Price yang harus dibayar (${sellPrice}), Payment yang sudah dibayar (${payment}), dan Sisa yang harus dibayar (${remainingPayment})`;
     invoiceData = data.data;
 
     // Fetch data kontak
@@ -68,7 +74,8 @@ fetch(InvoiceById, requestOptionsGet)
     const formattedDate = createdAt.toISOString().split("T")[0];
     document.getElementById("dateInput").value = formattedDate;
     document.getElementById("amountInput").value = data.data.sell_price;
-    document.getElementById("paymentInput").value = data.data.payment;
+    document.getElementById("brokerFeeInput").value = data.data.broker_fee;
+    document.getElementById("ketPayment").innerText = ketPayment;
   })
   .catch((error) => console.error("Error:", error));
 

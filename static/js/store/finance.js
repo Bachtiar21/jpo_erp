@@ -52,13 +52,13 @@ CihuyDomReady(() => {
     const AllInvoice = BaseUrl + UrlGetAllInvoice;
     const ContactById = BaseUrl + UrlGetByIdContact;
 
-fetch(AllInvoice, requestOptionsGet)
-	.then((result) => {
-		return result.json();
-	})
-	.then((data) => {
-		let tableData = "";
-		data.data.map((values) => {
+    fetch(AllInvoice, requestOptionsGet)
+    .then((result) => {
+        return result.json();
+    })
+    .then((data) => {
+        let tableData = "";
+        data.data.map((values) => {
             let dataContact = "";
             // Untuk Fetch Data Contact
             fetch(ContactById + `/${values.contact_id}`, requestOptionsGet)
@@ -66,63 +66,73 @@ fetch(AllInvoice, requestOptionsGet)
                 .then(contactData => {
                     dataContact = contactData.data.name;
                     document.getElementById(`contactCell${values.id}`).textContent = dataContact;
-            });
-            
+                });
+
             // Mendapatkan tanggal dari created_at
             const createdDate = new Date(values.created_at);
             const formattedDate = `${createdDate.getDate()}-${createdDate.getMonth() + 1}-${createdDate.getFullYear()}`;
 
-				tableData += `
+            // Menghitung selisih hari
+            const today = new Date();
+            const timeDifference = Math.abs(today - createdDate);
+            const differenceInDays = Math.ceil(timeDifference / (1000 * 3600 * 24));
+
+            // Menentukan nilai Aging berdasarkan status Paid atau tidak
+            let aging;
+            if (values.paid_status === 'paid') {
+                aging = 0;
+            } else {
+                aging = differenceInDays;
+            }
+
+            tableData += `
                         <tr>
                         <td hidden></td>
                         <td id="contactCell${values.id}" style="text-align: center; vertical-align: middle">
-							<!-- Nama contact akan ditampilkan di sini -->
-						</td>
-						<td style="text-align: center; vertical-align: middle">
+                            <!-- Nama contact akan ditampilkan di sini -->
+                        </td>
+                        <td style="text-align: center; vertical-align: middle">
                             <p class="fw-normal mb-1">${values.no_invoice}</p>
                         </td>
                         <td style="text-align: center; vertical-align: middle">
-                            <p class="fw-normal mb-1">${formattedDate}</p>
-                        </td>
-						<td style="text-align: center; vertical-align: middle">
-                            <p class="fw-normal mb-1"></p>
+                            <p class="fw-normal mb-1">${aging} Hari</p>
                         </td>
                         <td style="text-align: center; vertical-align: middle">
                             <p class="fw-normal mb-1">${getBadgePayment(values.paid_status)}</p>
                         </td>
                         <td style="text-align: center; vertical-align: middle">
-							<button type="button" class="btn btn-info" data-inv-id="${values.id}">Detail</button>	
+                            <button type="button" class="btn btn-info" data-inv-id="${values.id}">Detail</button>    
                             <button type="button" class="btn btn-warning" data-inv-id="${values.id}">Update</button>
                         </td>
                     </tr>`;
-		});
-		document.getElementById("tablebodyInvoice").innerHTML = tableData;
+        });
+        document.getElementById("tablebodyInvoice").innerHTML = tableData;
 
-		displayData(halamannow);
-		updatePagination();
+        displayData(halamannow);
+        updatePagination();
 
-		// Menambahkan event listener untuk button "Update Data"
-		const updateInvoice = document.querySelectorAll('.btn-warning');
-		updateInvoice.forEach(button => {
-			button.addEventListener('click', (event) => {
-				const id = event.target.getAttribute('data-inv-id');
-				window.location.href = `finance/finance_inv_edit.html?id=${id}`;
-			});
-		});
-		
-		// Menambahkan event listener untuk button "detail"
-		const detailInvoice = document.querySelectorAll('.btn-info');
-		detailInvoice.forEach(button => {
-			button.addEventListener('click', (event) => {
-				const id = event.target.getAttribute('data-inv-id');
-				window.location.href = `finance/finance_inv_detail.html?id=${id}`
-			})
-		})
-		
-	})
-	.catch(error => {
-		console.log('error', error);
-	});
+        // Menambahkan event listener untuk button "Update Data"
+        const updateInvoice = document.querySelectorAll('.btn-warning');
+        updateInvoice.forEach(button => {
+            button.addEventListener('click', (event) => {
+                const id = event.target.getAttribute('data-inv-id');
+                window.location.href = `finance/finance_inv_edit.html?id=${id}`;
+            });
+        });
+
+        // Menambahkan event listener untuk button "detail"
+        const detailInvoice = document.querySelectorAll('.btn-info');
+        detailInvoice.forEach(button => {
+            button.addEventListener('click', (event) => {
+                const id = event.target.getAttribute('data-inv-id');
+                window.location.href = `finance/finance_inv_detail.html?id=${id}`
+            })
+        })
+
+    })
+    .catch(error => {
+        console.log('error', error);
+    });
 
     function displayData(page) {
         const baris = CihuyQuerySelector("#tablebodyInvoice tr");
@@ -194,6 +204,19 @@ fetch(AllBill, requestOptionsGet)
             const createdDate = new Date(values.created_at);
             const formattedDate = `${createdDate.getDate()}-${createdDate.getMonth() + 1}-${createdDate.getFullYear()}`;
 
+            // Menghitung selisih hari
+            const today = new Date();
+            const timeDifference = Math.abs(today - createdDate);
+            const differenceInDays = Math.ceil(timeDifference / (1000 * 3600 * 24));
+
+            // Menentukan nilai Aging berdasarkan status Paid atau tidak
+            let aging;
+            if (values.paid_status === 'paid') {
+                aging = 0;
+            } else {
+                aging = differenceInDays;
+            }
+
 				tableData += `
                         <tr>
                         <td hidden></td>
@@ -204,10 +227,7 @@ fetch(AllBill, requestOptionsGet)
                             <p class="fw-normal mb-1">${values.no_bill}</p>
                         </td>
                         <td style="text-align: center; vertical-align: middle">
-                            <p class="fw-normal mb-1">${formattedDate}</p>
-                        </td>
-						<td style="text-align: center; vertical-align: middle">
-                            <p class="fw-normal mb-1"></p>
+                            <p class="fw-normal mb-1">${aging} Hari</p>
                         </td>
                         <td style="text-align: center; vertical-align: middle">
                             <p class="fw-normal mb-1">${getBadgePayment(values.paid_status)}</p>
@@ -314,7 +334,19 @@ fetch(AllCommission, requestOptionsGet)
             
             // Mendapatkan tanggal dari created_at
             const createdDate = new Date(values.created_at);
-            const formattedDate = `${createdDate.getDate()}-${createdDate.getMonth() + 1}-${createdDate.getFullYear()}`;
+
+            // Menghitung selisih hari
+            const today = new Date();
+            const timeDifference = Math.abs(today - createdDate);
+            const differenceInDays = Math.ceil(timeDifference / (1000 * 3600 * 24));
+
+            // Menentukan nilai Aging berdasarkan status Paid atau tidak
+            let aging;
+            if (values.paid_status === 'paid') {
+                aging = 0;
+            } else {
+                aging = differenceInDays;
+            }
 
 				tableData += `
                         <tr>
@@ -326,10 +358,7 @@ fetch(AllCommission, requestOptionsGet)
                             <p class="fw-normal mb-1">${values.no_commision}</p>
                         </td>
                         <td style="text-align: center; vertical-align: middle">
-                            <p class="fw-normal mb-1">${formattedDate}</p>
-                        </td>
-						<td style="text-align: center; vertical-align: middle">
-                            <p class="fw-normal mb-1"></p>
+                            <p class="fw-normal mb-1">${aging} Hari</p>
                         </td>
                         <td style="text-align: center; vertical-align: middle">
                             <p class="fw-normal mb-1">${getBadgePayment(values.paid_status)}</p>

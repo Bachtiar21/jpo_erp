@@ -77,33 +77,38 @@
 
                                         <div class="row mt-1">
                                             <div class="col-md-6">
-                                                <!-- Inputan Date -->
-                                                <h5 class="card-title mt-2">Date</h5>
-                                                <input type="date" class="form-control" id="dateInput" name="dateInput"
+                                                <!-- Inputan Aging -->
+                                                <h5 class="card-title mt-2">Aging</h5>
+                                                <input type="text" class="form-control" id="dateInput" name="dateInput"
                                                     disabled />
                                             </div>
                                             <div class="col-md-6">
-                                                <!-- Inputan Due Date -->
-                                                <h5 class="card-title mt-2">Due Date</h5>
-                                                <input type="date" class="form-control" id="dueDateInput"
-                                                    name="dueDateInput" disabled />
+                                                <!-- Inputan Amount -->
+                                                <h5 class="card-title mt-2">Amount</h5>
+                                                <input type="number" class="form-control" id="amountInput" name="amountInput"
+                                                    disabled />
                                             </div>
                                         </div>
 
-                                        <!-- Inputan Broker -->
-                                        <h5 class="card-title mt-2">Broker</h5>
-                                        <input type="text" class="form-control" id="brokerInput" name="brokerInput"
-                                            disabled />
-
-                                        <!-- Inputan Amount -->
-                                        <h5 class="card-title mt-2">Amount</h5>
-                                        <input type="number" class="form-control" id="amountInput" name="amountInput"
-                                            disabled />
-
+                                        <div class="row mt-1">
+                                            <div class="col-md-6">
+                                                <!-- Inputan Broker -->
+                                                <h5 class="card-title mt-2">Broker</h5>
+                                                <input type="text" class="form-control" id="brokerInput" name="brokerInput"
+                                                    disabled />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <!-- Inputan Amount -->
+                                                <h5 class="card-title mt-2">Broker Fee</h5>
+                                                <input type="text" class="form-control" id="brokerFeeInput"
+                                                    name="brokerFeeInput" disabled />
+                                            </div>
+                                        </div>
                                         <!-- Inputan Jumlah -->
                                         <h5 class="card-title mt-2">Payment</h5>
                                         <input type="number" class="form-control" id="paymentInput"
-                                            name="paymentInput" />
+                                            name="paymentInput" placeholder="Masukkan Nominal Pembayaran"/>
+                                        <h5 id="ketPayment" class="mt-1" style="font-size: 11px;"><i></i></h5>
 
                                         <!-- Inputan Rekening -->
                                         <h5 class="card-title mt-2">Rekening</h5>
@@ -112,11 +117,6 @@
                                         </select>
                                         <input type="text" class="form-control" id="rekeningNow"
                                             name="rekeningNow" hidden disabled/>
-
-                                        <!-- Inputan Deskripsi -->
-                                        <!-- <h5 class="card-title mt-2">Deskripsi</h5>
-                                        <textarea class="form-control" name="deskripsiInput" id="deskripsiInput"
-                                            cols="30" rows="3" placeholder="Masukkan Deskripsi" disabled></textarea> -->
 
                                         <!-- Button Submit -->
                                         <div
