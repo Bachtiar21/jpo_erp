@@ -6,7 +6,6 @@ const BillById = BaseUrl + UrlGetBillById + `/${id}`;
 const GetContactById = BaseUrl + UrlGetByIdContact;
 const GetBankById = BaseUrl + UrlGetBankById;
 
-
 // Pengkondisian ketika klik button Paid
 document.getElementById("paidButton").addEventListener("click", function() {
     // Menampilkan SweetAlert konfirmasi
@@ -31,8 +30,7 @@ fetch(BillById, requestOptionsGet)
 .then(response => response.json())
 .then(data => {
     const contactId = data.data.contact_id;
-    const rekeningId = data.data.bank_id;
-
+    const bankId = data.data.bank_id;
             
     // Fetch data kontak
     fetch(GetContactById + `/${contactId}`, requestOptionsGet)
@@ -44,13 +42,13 @@ fetch(BillById, requestOptionsGet)
             }
     });
 
-    // Fetch data Bank
-    fetch(GetBankById + `/${rekeningId}`, requestOptionsGet)
-        .then(response => response.json())
-        .then(bankData => {
+    // Fetch data Rekening
+    fetch(GetBankById + `/${bankId}`, requestOptionsGet)
+        .then((response) => response.json())
+        .then((bankData) => {
             if (bankData && bankData.data) {
-                const bankName = bankData.data.Bank;
-                document.getElementById("rekeningInput").value = bankName;
+            const bankName = bankData.data.bank + "(" + bankData.data.no_rek + ")" + "-" + bankData.data.name_rek;
+            document.getElementById("rekeningInput").value = bankName;
             }
     });
 

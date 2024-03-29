@@ -2,6 +2,7 @@ import {
   BaseUrl,
   UrlGetInvoiceById,
   UrlGetByIdContact,
+  UrlGetBankById,
   requestOptionsGet,
 } from "../controller/template.js";
 
@@ -9,6 +10,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id");
 const InvoiceById = BaseUrl + UrlGetInvoiceById + `/${id}`;
 const GetContactById = BaseUrl + UrlGetByIdContact;
+const GetBankById = BaseUrl + UrlGetBankById;
 
 // Fetch Data Convection
 fetch(InvoiceById, requestOptionsGet)
@@ -16,6 +18,7 @@ fetch(InvoiceById, requestOptionsGet)
   .then((data) => {
     const contactId = data.data.contact_id;
     const brokerId = data.data.broker;
+    const bankId = data.data.bank_id;
 
     // Fetch data kontak
     fetch(GetContactById + `/${contactId}`, requestOptionsGet)
@@ -25,7 +28,7 @@ fetch(InvoiceById, requestOptionsGet)
           const contactName = contactData.data.name;
           document.getElementById("customerInput").value = contactName;
         }
-      });
+    });
 
     // Fetch data Broker
     fetch(GetContactById + `/${brokerId}`, requestOptionsGet)
@@ -35,7 +38,17 @@ fetch(InvoiceById, requestOptionsGet)
           const contactName = contactData.data.name;
           document.getElementById("brokerInput").value = contactName;
         }
-      });
+    });
+
+    // Fetch data Rekening
+    fetch(GetBankById + `/${bankId}`, requestOptionsGet)
+      .then((response) => response.json())
+      .then((bankData) => {
+        if (bankData && bankData.data) {
+          const bankName = bankData.data.bank + "(" + bankData.data.no_rek + ")" + "-" + bankData.data.name_rek;
+          document.getElementById("rekeningInput").value = bankName;
+        }
+    });
 
     // Populate form fields with data
     const createdAt = new Date(data.data.created_at);

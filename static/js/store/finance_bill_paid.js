@@ -1,4 +1,4 @@
-import { BaseUrl, UrlGetAllBank, UrlGetBillById, UrlGetByIdContact, UrlPaidBill, requestOptionsGet } from "../controller/template.js";
+import { BaseUrl, UrlGetAllBank, UrlGetBillById, UrlGetBankById, UrlGetByIdContact, UrlPaidBill, requestOptionsGet } from "../controller/template.js";
 import { token } from "../controller/cookies.js";
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -7,6 +7,7 @@ const BillById = BaseUrl + UrlGetBillById + `/${id}`;
 const GetContactById = BaseUrl + UrlGetByIdContact;
 const AllBank = BaseUrl + UrlGetAllBank;
 const PaidBill = BaseUrl + UrlPaidBill + `/${id}/payment`;
+const GetBankById = BaseUrl + UrlGetBankById;
 
 let billData;
 
@@ -15,6 +16,7 @@ fetch(BillById, requestOptionsGet)
 .then(response => response.json())
 .then(data => {
     const contactId = data.data.contact_id;
+	const bankId = data.data.bank_id;
     billData = data.data;
             
     // Fetch data kontak
@@ -26,6 +28,21 @@ fetch(BillById, requestOptionsGet)
                 document.getElementById("vendorInput").value = contactName;
             }
     });
+
+	// Fetch data Rekening
+    fetch(GetBankById + `/${bankId}`, requestOptionsGet)
+      .then((response) => response.json())
+      .then((bankData) => {
+        if (bankData && bankData.data) {
+          const bankName = bankData.data.bank + "(" + bankData.data.no_rek + ")" + "-" + bankData.data.name_rek;
+          document.getElementById("rekeningNow").value = bankName;
+        }
+    });
+
+    if (data.data.bank_id !== null) {
+        document.getElementById("listRekening").setAttribute("hidden", "hidden");
+        document.getElementById("rekeningNow").removeAttribute("hidden");
+    }
 
     // Slicing Waktu Transaksi
     const createdAt = new Date(data.data.created_at);
