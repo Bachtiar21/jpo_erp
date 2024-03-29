@@ -12,47 +12,33 @@ const InvoiceById = BaseUrl + UrlGetInvoiceById + `/${id}`;
 const GetContactById = BaseUrl + UrlGetByIdContact;
 const GetBankById = BaseUrl + UrlGetBankById;
 
-// Pengkondisian ketika klik button Paid
-document.getElementById("paidButton").addEventListener("click", function () {
-  // Fetch data invoice
-  fetch(InvoiceById, requestOptionsGet)
-    .then((response) => response.json())
-    .then((data) => {
-      // Cek apakah status sudah 'paid'
-      if (data.data.paid_status === 'paid') {
-        // Jika sudah 'paid', tampilkan SweetAlert "Transaksi Sudah Selesai"
-        Swal.fire({
-          title: "Transaksi Sudah Selesai",
-          text: "Invoice ini sudah dilunas.",
-          icon: "warning",
-          confirmButtonColor: "#3085d6",
-          confirmButtonText: "OK",
-        });
-      } else {
-        // Jika belum 'paid', tampilkan SweetAlert konfirmasi
-        Swal.fire({
-          title: "Paid Invoice?",
-          text: "Apakah kamu yakin akan Paid Invoice?",
-          icon: "question",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Ya, yakin!",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            // Jika pengguna menekan tombol "OK", arahkan ke halaman yang sesuai
-            window.location.href = `finance_inv_paid.html?id=${id}`;
-          }
-        });
-      }
-    })
-    .catch((error) => console.error("Error:", error));
-  });
-
 // Fetch Data Convection
 fetch(InvoiceById, requestOptionsGet)
   .then((response) => response.json())
   .then((data) => {
+    // Memeriksa status pembayaran dan menyembunyikan tombol jika sudah dibayar
+    if (data.data.paid_status === 'paid') {
+        document.getElementById("paidButton").setAttribute("hidden", true);
+    } else {
+        document.getElementById("paidButton").addEventListener("click", function() {
+            // Menampilkan SweetAlert konfirmasi
+            Swal.fire({
+                title: 'Paid Invoice?',
+                text: "Apakah kamu yakin akan Paid Invoice?",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, yakin!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Jika pengguna menekan tombol "OK", arahkan ke halaman yang sesuai
+                    window.location.href = `finance_inv_paid.html?id=${id}`;
+                }
+            });
+        });
+    }
+    
     const contactId = data.data.contact_id;
     const brokerId = data.data.broker;
     const bankId = data.data.bank_id;

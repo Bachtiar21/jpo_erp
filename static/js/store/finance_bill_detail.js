@@ -6,47 +6,33 @@ const BillById = BaseUrl + UrlGetBillById + `/${id}`;
 const GetContactById = BaseUrl + UrlGetByIdContact;
 const GetBankById = BaseUrl + UrlGetBankById;
 
-// Pengkondisian ketika klik button Paid
-document.getElementById("paidButton").addEventListener("click", function () {
-  // Fetch data invoice
-  fetch(BillById, requestOptionsGet)
-    .then((response) => response.json())
-    .then((data) => {
-      // Cek apakah status sudah 'paid'
-      if (data.data.paid_status === 'paid') {
-        // Jika sudah 'paid', tampilkan SweetAlert "Transaksi Sudah Selesai"
-        Swal.fire({
-          title: "Transaksi Sudah Selesai",
-          text: "Bill ini sudah dilunas.",
-          icon: "warning",
-          confirmButtonColor: "#3085d6",
-          confirmButtonText: "OK",
-        });
-      } else {
-        // Jika belum 'paid', tampilkan SweetAlert konfirmasi
-        Swal.fire({
-            title: 'Paid Bill?',
-            text: "Apakah kamu yakin akan Paid Bill?",
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, yakin!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Jika pengguna menekan tombol "OK", arahkan ke halaman yang sesuai
-                window.location.href = `finance_bill_paid.html?id=${id}`;
-            }
-        });
-      }
-    })
-    .catch((error) => console.error("Error:", error));
-  });
-
 // Fetch Data Convection
 fetch(BillById, requestOptionsGet)
 .then(response => response.json())
 .then(data => {
+    // Memeriksa status pembayaran dan menyembunyikan tombol jika sudah dibayar
+    if (data.data.paid_status === 'paid') {
+        document.getElementById("paidButton").setAttribute("hidden", true);
+    } else {
+        document.getElementById("paidButton").addEventListener("click", function() {
+            // Menampilkan SweetAlert konfirmasi
+            Swal.fire({
+                title: 'Paid Bill?',
+                text: "Apakah kamu yakin akan Paid Bill?",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, yakin!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Jika pengguna menekan tombol "OK", arahkan ke halaman yang sesuai
+                    window.location.href = `finance_bill_paid.html?id=${id}`;
+                }
+            });
+        });
+    }
+
     const contactId = data.data.contact_id;
     const bankId = data.data.bank_id;
     const sellPrice = data.data.bill_price;
@@ -100,8 +86,8 @@ fetch(BillById, requestOptionsGet)
 
 // Menambahkan event listener untuk button "Update Data"
 const updateButton = document.querySelectorAll('#updateButton');
-	updateButton.forEach(button => {
-		button.addEventListener('click', () => {
-		window.location.href = `finance_bill_edit.html?id=${id}`;
-	});
+updateButton.forEach(button => {
+    button.addEventListener('click', () => {
+    window.location.href = `finance_bill_edit.html?id=${id}`;
+    });
 });
