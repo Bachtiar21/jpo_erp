@@ -209,8 +209,6 @@ CihuyDomReady(() => {
 	let halamannow = 1;
 
 	const AllTransferOut = BaseUrl + UrlGetAllTransferOut;
-	const ContactById = BaseUrl + UrlGetByIdContact;
-	const WarehouseByToken = BaseUrl + UrlGetWarehouseByIdByToken;
 
 fetch(AllTransferOut, requestOptionsGet)
 	.then((result) => {
@@ -218,23 +216,10 @@ fetch(AllTransferOut, requestOptionsGet)
 	})
 	.then((data) => {
 		let tableData = "";
+
 		data.data.map((values) => {
-			let dataContactOut = "";
-			let dataWarehouseOut = "";
-                // Untuk Fetch Data Contact
-                fetch(ContactById + `/${values.contact_id}`, requestOptionsGet)
-                    .then(response => response.json())
-                    .then(contactData => {
-                        dataContactOut = contactData.data.name;
-                        document.getElementById(`contactCellOut${values.id}`).textContent = dataContactOut;
-                });
-				// Untuk Fetch Data Warehouse
-                fetch(WarehouseByToken + `/${values.warehouse_id}`, requestOptionsGet)
-                    .then(response => response.json())
-                    .then(warehouseData => {
-                        dataWarehouseOut = warehouseData.data.name;
-                        document.getElementById(`warehouseCellOut${values.id}`).textContent = dataWarehouseOut;
-                });
+			const warehouseName = values.warehouse.name;
+			const contactName = values.contact.name;
 				tableData += `
                         <tr>
                         <td hidden></td>
@@ -244,12 +229,12 @@ fetch(AllTransferOut, requestOptionsGet)
 						<td style="text-align: center; vertical-align: middle">
                             <p class="fw-normal mb-1">${values.no_so}</p>
                         </td>
-						<td id="warehouseCellOut${values.id}" style="text-align: center; vertical-align: middle">
-							<!-- Nama contact akan ditampilkan di sini -->
-						</td>
-						<td id="contactCellOut${values.id}" style="text-align: center; vertical-align: middle">
-							<!-- Nama contact akan ditampilkan di sini -->
-						</td>	
+						<td style="text-align: center; vertical-align: middle">
+                            <p class="fw-normal mb-1">${warehouseName}</p>
+                        </td>
+						<td style="text-align: center; vertical-align: middle">
+                            <p class="fw-normal mb-1">${contactName}</p>
+                        </td>
                         <td style="text-align: center; vertical-align: middle">
                             <p class="fw-normal mb-1">${getBadgePO(values.status)}</p>
                         </td>
