@@ -47,10 +47,10 @@ fetch(AllTransferIn, requestOptionsGet)
 	})
 	.then((data) => {
 		let tableData = "";
-		const warehouseName = values.warehouse.name;
-		const contactName = values.contact.name;
 		data.data.map((values) => {
-				tableData += `
+			const warehouseName = values.warehouse.name;
+			const contactName = values.contact.name;
+			tableData += `
                         <tr>
                         <td hidden></td>
                         <td style="text-align: center; vertical-align: middle">
@@ -59,12 +59,12 @@ fetch(AllTransferIn, requestOptionsGet)
 						<td style="text-align: center; vertical-align: middle">
                             <p class="fw-normal mb-1">${values.no_po}</p>
                         </td>
-						<td id="contactCell${contactName}" style="text-align: center; vertical-align: middle">
-							<!-- Nama contact akan ditampilkan di sini -->
-						</td>
-						<td id="warehouseCell${warehouseName}" style="text-align: center; vertical-align: middle">
-							<!-- Nama warehouse akan ditampilkan di sini -->
-						</td>
+						<td style="text-align: center; vertical-align: middle">
+                            <p class="fw-normal mb-1">${contactName}</p>
+                        </td>
+						<td style="text-align: center; vertical-align: middle">
+                            <p class="fw-normal mb-1">${warehouseName}</p>
+                        </td>
                         <td style="text-align: center; vertical-align: middle">
                             <p class="fw-normal mb-1">${getBadgePO(values.status)}</p>
                         </td>
