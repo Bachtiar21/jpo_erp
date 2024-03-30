@@ -2,8 +2,8 @@
 import { token } from "./cookies.js";
 
 // Base Url
-export let BaseUrl = "http://localhost:8000/";
-export let BaseUrlFe = "http://127.0.0.1:5500/";
+export let BaseUrl = "https://api-jpo.akhairi.com/";
+export let BaseUrlFe = "https://bachtiar21.github.io/jpo_erp/";
 export let BaseUrlFeDeploy = "https://bachtiar21.github.io/jpo_erp/";
 export let tokenGithub = "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";
 
