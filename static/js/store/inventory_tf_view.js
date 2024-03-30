@@ -47,6 +47,8 @@ fetch(AllTransferIn, requestOptionsGet)
 	})
 	.then((data) => {
 		let tableData = "";
+		const warehouseName = values.warehouse.name;
+		const contactName = values.contact.name;
 		data.data.map((values) => {
 				tableData += `
                         <tr>
@@ -57,10 +59,10 @@ fetch(AllTransferIn, requestOptionsGet)
 						<td style="text-align: center; vertical-align: middle">
                             <p class="fw-normal mb-1">${values.no_po}</p>
                         </td>
-						<td id="contactCell${values.contact.name}" style="text-align: center; vertical-align: middle">
+						<td id="contactCell${contactName}" style="text-align: center; vertical-align: middle">
 							<!-- Nama contact akan ditampilkan di sini -->
 						</td>
-						<td id="warehouseCell${values.warehouse.name}" style="text-align: center; vertical-align: middle">
+						<td id="warehouseCell${warehouseName}" style="text-align: center; vertical-align: middle">
 							<!-- Nama warehouse akan ditampilkan di sini -->
 						</td>
                         <td style="text-align: center; vertical-align: middle">
