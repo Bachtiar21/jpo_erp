@@ -54,7 +54,7 @@ CihuyDomReady(() => {
 		detailPOButtons.forEach(button => {
 			button.addEventListener('click', (event) => {
 				const id = event.target.getAttribute('data-po-id');
-				window.location.href = `purchase_po_detail.html?id=${id}`;
+				window.location.href = `sales_so_list_detail.html?id=${id}`;
 			});
 		});
 
@@ -63,7 +63,7 @@ CihuyDomReady(() => {
 		updatePOButtons.forEach(button => {
 			button.addEventListener('click', (event) => {
 				const id = event.target.getAttribute('data-po-id');
-				window.location.href = `purchase_create_po_edit.html?id=${id}`;
+				window.location.href = `sales_create_so_edit.html?id=${id}`;
 			});
 		});
 	})

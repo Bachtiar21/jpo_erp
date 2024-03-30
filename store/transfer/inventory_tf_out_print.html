@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="titleDoc">Transfer Out Document</title>
+    <style>
+        @page {
+            size: A4 portrait;
+            margin: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-right: 50px;
+            padding-left: 50px;
+            /* border: 1px solid #ccc; */
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+        h4 {
+            text-align: center;
+            font-weight: normal;
+            margin-bottom: 5px;
+            margin-top: 0;
+        }
+        h5 {
+            font-weight: normal;
+            margin-bottom: 5px;
+            margin-top: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #000;
+        }
+        th, td {
+            padding: 5px;
+            text-align: left;
+            font-size: 12px; /* Mengurangi ukuran font */
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Transfer Out Document</h2>
+        <h4 id="noTfOut">No : {No.Dokumen}</h4>
+        <h4 id="tanggalTfOut">Tanggal</h4>
+        <hr>
+        <br>
+        <h5 id="fromInput">Diterbitkan Oleh</h5>
+        <h5 id="toInput">Ditujukan Kepada</h5>
+        <br>
+        <table>
+            <thead>
+                <tr>
+                    <th>Atribut</th>
+                    <th>Spesifikasi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Nama Barang</td>
+                    <td id="namaBarang">john@example.com</td>
+                </tr>
+                <tr>
+                    <td>Spesifikasi</td>
+                    <td id="spesifikasi">jane@example.com</td>
+                </tr>
+                <tr>
+                    <td>Stock</td>
+                    <td id="stock">michael@example.com</td>
+                </tr>
+                <tr>
+                    <td>Grade</td>
+                    <td id="grade">michael@example.com</td>
+                </tr>
+                <tr>
+                    <td>SKU</td>
+                    <td id="sku">michael@example.com</td>
+                </tr>
+                <tr>
+                    <td>Deskripsi</td>
+                    <td id="deskripsi">michael@example.com</td>
+                </tr>
+                <!-- Tambahkan baris data sesuai kebutuhan -->
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
+<script src="../../static/js/store/inventory_tf_out_print.js" type="module"></script>

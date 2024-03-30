@@ -143,27 +143,24 @@
                                         <input type="text" class="form-control" id="hargaInput" name="hargaInput"
                                             disabled />
 
-                                        <!-- Inputan Status Transfer -->
-                                        <!-- <h5 class="card-title mt-2">Status Pre Order</h5>
-                                        <select class="form-select" id="listStatus" aria-label="Pilih Opsi" disabled>
-                                            <option selected>Pilih Status</option>
-                                            <option value="paid">Paid</option>
-                                            <option value="received">Received</option>
-                                            <option value="done">Done</option>
-                                        </select> -->
+                                        
 
                                         <!-- Button Submit -->
-                                        <div style="
-                                    position: relative;
-                                    text-align: right;
-                                    margin-top: 20px;
-                                ">
+                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+                                            <div>
+                                                <button id="paidButton" type="button" class="btn btn-info"
+                                                    id="paidButton">Paid</button>
+                                                <button id="receivedButton" type="button" class="btn btn-warning"
+                                                    id="paidButton">Received</button>
+                                            </div>
+                                            <div>
                                             <button type="button" class="btn btn-primary" id="submitButton">
                                                 Edit
                                             </button>
                                             <a href="purchase_po_view.html" type="button" class="btn btn-info">
                                                 Close
                                             </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

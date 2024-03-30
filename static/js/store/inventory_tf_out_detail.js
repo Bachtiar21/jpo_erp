@@ -6,29 +6,33 @@ const GetTransferOutById = BaseUrl + UrlGetTransferOutById + `/${id}`;
 const GetContactById = BaseUrl + UrlGetByIdContact;
 const GetWarehouseByIdByToken = BaseUrl + UrlGetWarehouseByIdByToken;
 
-// Pengkondisian ketika klik button Received
-document.getElementById("sentButton").addEventListener("click", function() {
-    // Menampilkan SweetAlert konfirmasi
-    Swal.fire({
-        title: 'Sent Transfer Out?',
-        text: "Apakah kamu yakin akan sent transfer out?",
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Ya, yakin!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            // Jika pengguna menekan tombol "OK", arahkan ke halaman yang sesuai
-            window.location.href = `inventory_tf_out_sent.html?id=${id}`;
-        }
-    });
-});
-
 // Fetch data from API endpoint
 fetch(GetTransferOutById, requestOptionsGet)
 .then(response => response.json())
 .then(data => {
+    // Pengkondisian Button Sent
+    if (data.data.status === "done") {
+        document.getElementById("sentButton").setAttribute("hidden", "hidden");
+    } else {
+        // Pengkondisian ketika klik button Sent
+        document.getElementById("sentButton").addEventListener("click", function() {
+            // Menampilkan SweetAlert konfirmasi
+            Swal.fire({
+                title: 'Sent Transfer Out?',
+                text: "Apakah kamu yakin akan sent transfer out?",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, yakin!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Jika pengguna menekan tombol "OK", arahkan ke halaman yang sesuai
+                    window.location.href = `inventory_tf_out_sent.html?id=${id}`;
+                }
+            });
+        });
+    }
     const contactId = data.data.contact_id;
     const  warehouseId = data.data.warehouse_id;
             
@@ -65,3 +69,11 @@ fetch(GetTransferOutById, requestOptionsGet)
     document.getElementById('listStatus').value = data.data.status;
 })
 .catch(error => console.error('Error:', error));
+
+// Menambahkan event listener untuk button "Print"
+const printButton = document.querySelectorAll('#printButton');
+printButton.forEach(button => {
+    button.addEventListener('click', () => {
+        window.location.href = `inventory_tf_out_print.html?id=${id}`;
+    });
+});

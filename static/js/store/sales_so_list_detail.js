@@ -1,24 +1,5 @@
 import { BaseUrl, UrlGetSalesOrderById, UrlGetByIdContact, UrlGetWarehouseByIdByToken, requestOptionsGet } from "../controller/template.js";
 
-// Pengkondisian ketika klik button Received
-document.getElementById("receivedButton").addEventListener("click", function() {
-    // Menampilkan SweetAlert konfirmasi
-    Swal.fire({
-        title: 'Received Sales Order?',
-        text: "Apakah kamu yakin akan received sales order?",
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Ya, yakin!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            // Jika pengguna menekan tombol "OK", arahkan ke halaman yang sesuai
-            window.location.href = `../transfer/inventory_tf_out_sent.html?id=${id}`;
-        }
-    });
-});
-
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
 const GetSalesOrderById = BaseUrl + UrlGetSalesOrderById + `/${id}`;
@@ -29,6 +10,30 @@ const GetWarehouseByIdByToken = BaseUrl + UrlGetWarehouseByIdByToken;
 fetch(GetSalesOrderById, requestOptionsGet)
 .then(response => response.json())
 .then(data => {
+    // Pengkondisian Button Received
+    if (data.data.status === "done") {
+        document.getElementById("receivedButton").setAttribute("hidden", "hidden");
+    } else {
+        // Pengkondisian ketika klik button Received
+        document.getElementById("receivedButton").addEventListener("click", function() {
+            // Menampilkan SweetAlert konfirmasi
+            Swal.fire({
+                title: 'Received Sales Order?',
+                text: "Apakah kamu yakin akan received sales order?",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, yakin!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Jika pengguna menekan tombol "OK", arahkan ke halaman yang sesuai
+                    window.location.href = `../transfer/inventory_tf_out_sent.html?id=${id}`;
+                }
+            });
+        });
+    }
+
     const contactId = data.data.contact_id;
     const  warehouseId = data.data.warehouse_id;
             

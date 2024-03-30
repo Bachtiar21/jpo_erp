@@ -13,6 +13,47 @@ fetch(GetByIdPurchaseOrder, requestOptionsGet)
     })
     .then((values) => {
         if (values && values.data) {
+            // Pengkondisian Button Received & Paid
+            if (values.data.status === "done") {
+                document.getElementById("receivedButton").setAttribute("hidden", "hidden");
+                document.getElementById("paidButton").setAttribute("hidden", "hidden");
+            } else {
+                document.getElementById("paidButton").addEventListener("click", function() {
+                    // Menampilkan SweetAlert konfirmasi
+                    Swal.fire({
+                        title: 'Paid Purchase Order?',
+                        text: "Apakah kamu yakin akan Paid Purchase Order?",
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya, yakin!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Jika pengguna menekan tombol "OK", arahkan ke halaman yang sesuai
+                            window.location.href = `../finance/finance_bill_paid.html?id=${id}`;
+                        }
+                    });
+                });
+
+                document.getElementById("receivedButton").addEventListener("click", function() {
+                    // Menampilkan SweetAlert konfirmasi
+                    Swal.fire({
+                        title: 'Received Purchase Order?',
+                        text: "Apakah kamu yakin akan Received Purchase Order?",
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya, yakin!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Jika pengguna menekan tombol "OK", arahkan ke halaman yang sesuai
+                            window.location.href = `../transfer/inventory_tf_in_received.html?id=${id}`;
+                        }
+                    });
+                });
+            }
             // Ambil data PO
             const purchaseOrderData = values.data;
             const contactId = purchaseOrderData.contact_id;

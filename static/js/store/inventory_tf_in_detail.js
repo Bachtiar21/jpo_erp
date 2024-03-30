@@ -1,24 +1,5 @@
 import { BaseUrl, UrlGetTransferInById, UrlGetByIdContact, UrlGetWarehouseByIdByToken, requestOptionsGet } from "../controller/template.js";
 
-// Pengkondisian ketika klik button Received
-document.getElementById("receivedButton").addEventListener("click", function() {
-    // Menampilkan SweetAlert konfirmasi
-    Swal.fire({
-        title: 'Received Transfer In?',
-        text: "Apakah kamu yakin akan received transfer in?",
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Ya, yakin!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            // Jika pengguna menekan tombol "OK", arahkan ke halaman yang sesuai
-            window.location.href = `inventory_tf_in_received.html?id=${id}`;
-        }
-    });
-});
-
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
 const GetTransferInById = BaseUrl + UrlGetTransferInById + `/${id}`;
@@ -29,6 +10,30 @@ const GetWarehouseByIdByToken = BaseUrl + UrlGetWarehouseByIdByToken;
 fetch(GetTransferInById, requestOptionsGet)
 .then(response => response.json())
 .then(data => {
+    // Pengkondisian Button Received
+    if (data.data.status === "done") {
+        document.getElementById("receivedButton").setAttribute("hidden", "hidden");
+    } else {
+        // Pengkondisian ketika klik button Received
+        document.getElementById("receivedButton").addEventListener("click", function() {
+            // Menampilkan SweetAlert konfirmasi
+            Swal.fire({
+                title: 'Received Transfer In?',
+                text: "Apakah kamu yakin akan received transfer in?",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, yakin!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Jika pengguna menekan tombol "OK", arahkan ke halaman yang sesuai
+                    window.location.href = `inventory_tf_in_received.html?id=${id}`;
+                }
+            });
+        });
+    }
+
     const contactId = data.data.contact_id;
     const  warehouseId = data.data.warehouse_id;
             
@@ -66,3 +71,11 @@ fetch(GetTransferInById, requestOptionsGet)
 
 })
 .catch(error => console.error('Error:', error));
+
+// Menambahkan event listener untuk button "Print"
+const printButton = document.querySelectorAll('#printButton');
+printButton.forEach(button => {
+    button.addEventListener('click', () => {
+        window.location.href = `inventory_tf_in_print.html?id=${id}`;
+    });
+});
