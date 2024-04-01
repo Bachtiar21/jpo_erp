@@ -58,17 +58,12 @@ fetch(GetTransferInById, requestOptionsGet)
     // Populate form fields with data
     document.getElementById('nomorDoInput').value = data.data.no_do;
     document.getElementById('namaBarangInput').value = data.data.nama_barang;
-    document.getElementById('spesifikasiInput').value = `Ketebalan: ${data.data.ketebalan}, Setting: ${data.data.setting}, Gramasi: ${data.data.gramasi}`;
-    document.getElementById('stokRoll').value = data.data.stock_roll;
-    document.getElementById('stokKg').value = data.data.stock_kg;
-    document.getElementById('stokRib').value = data.data.stock_rib;
+    document.getElementById('spesifikasiInput').value = `Ketebalan: ${data.data.ketebalan} Cm, Setting: ${data.data.setting} Inch, Gramasi: ${data.data.gramasi}`;
+    document.getElementById('stokInput').value = `Stok Roll : ${data.data.stock_roll}, Stok Kg : ${data.data.stock_kg}, Stok Rib : ${data.data.stock_rib}`;
     document.getElementById('gradeInput').value = data.data.grade;
     document.getElementById('skuInput').value = data.data.sku;
     document.getElementById('tanggalInput').value = data.data.date;
     document.getElementById('deskripsiInput').value = data.data.description;
-    document.getElementById('inputHrefPO').value = data.data.no_po;
-    document.getElementById('listStatus').value = data.data.status;
-
 })
 .catch(error => console.error('Error:', error));
 

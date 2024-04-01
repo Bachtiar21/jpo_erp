@@ -53,6 +53,9 @@ fetch(GetSalesOrderById, requestOptionsGet)
     document.getElementById('nomorSoInput').value = data.data.no_so;
     document.getElementById('skuInput').value = data.data.sku;
     document.getElementById('stokInput').value = `Stok Roll : ${data.data.stock_roll}, Stok Kg : ${data.data.stock_kg}, Stok Rib : ${data.data.stock_rib}`;
+    document.getElementById('ketebalanInput').value = data.data.ketebalan;
+    document.getElementById('settingInput').value = data.data.setting;
+    document.getElementById('gramasiInput').value = data.data.gramasi;
     document.getElementById('hargaJualInput').value = data.data.price;
 
     // Check if broker and broker_fee exist

@@ -84,8 +84,29 @@
                                             name="namaBarangInput" disabled />
                                         <!-- Inputan Spesifikasi -->
                                         <h5 class="card-title mt-2">Spesifikasi</h5>
-                                        <textarea class="form-control" name="spesifikasiInput" id="spesifikasiInput"
-                                            cols="30" rows="3" disabled></textarea>
+                                        <div class="row mt-1">
+                                            <div class="col-md-6">
+                                                <div class="input-group">
+                                                <input type="text" class="form-control mt-1" id="ketebalanInput" name="ketebalanInput"
+                                                    placeholder="Masukkan Ketebalan Barang" disabled />
+                                                <div class="input-group-append mt-1">
+                                                    <span class="input-group-text">Cm</span>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group">
+                                                <input type="text" class="form-control mt-1" id="settingInput" name="settingInput"
+                                                    placeholder="Masukkan Setting Barang" disabled />
+                                                <div class="input-group-append mt-1">
+                                                    <span class="input-group-text">Inch</span>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>                    
+                                        <input type="text" class="form-control mt-1" id="gramasiInput" name="gramasiInput"
+                                        placeholder="Masukkan Gramasi Barang" disabled />
+
                                         <!-- Inputan Stok (Roll & Kg) -->
                                         <h5 class="card-title mt-2">Stok (Roll & Kg)</h5>
                                         <input type="text" class="form-control" id="stokInput" name="stokInput"
@@ -158,7 +179,7 @@
                                                 <!-- <button type="button" class="btn btn-info"
                                                     id="paidtButton">Paid</button> -->
                                                 <button type="button" class="btn btn-warning"
-                                                    id="receivedButton">Received</button>
+                                                    id="sentButton">Sent</button>
                                                 <!-- <button type="button" class="btn btn-success"
                                                     id="doneButton">Done</button> -->
                                             </div>

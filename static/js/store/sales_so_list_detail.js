@@ -12,14 +12,14 @@ fetch(GetSalesOrderById, requestOptionsGet)
 .then(data => {
     // Pengkondisian Button Received
     if (data.data.status === "done") {
-        document.getElementById("receivedButton").setAttribute("hidden", "hidden");
+        document.getElementById("sentButton").setAttribute("hidden", "hidden");
     } else {
         // Pengkondisian ketika klik button Received
-        document.getElementById("receivedButton").addEventListener("click", function() {
+        document.getElementById("sentButton").addEventListener("click", function() {
             // Menampilkan SweetAlert konfirmasi
             Swal.fire({
-                title: 'Received Sales Order?',
-                text: "Apakah kamu yakin akan received sales order?",
+                title: 'Sent Sales Order?',
+                text: "Apakah kamu yakin akan Sent sales order?",
                 icon: 'question',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -58,7 +58,10 @@ fetch(GetSalesOrderById, requestOptionsGet)
     // Populate form fields with data
     document.getElementById('nomorSoInput').value = data.data.no_so;
     document.getElementById('namaBarangInput').value = data.data.nama_barang;
-    document.getElementById('spesifikasiInput').value = `Ketebalan: ${data.data.ketebalan}, Setting: ${data.data.setting}, Gramasi: ${data.data.gramasi}`;
+    // document.getElementById('spesifikasiInput').value = `Ketebalan: ${data.data.ketebalan} Cm, Setting: ${data.data.setting} Inch, Gramasi: ${data.data.gramasi}`;
+    document.getElementById('ketebalanInput').value = data.data.ketebalan;
+    document.getElementById('settingInput').value = data.data.setting;
+    document.getElementById('gramasiInput').value = data.data.gramasi;
     document.getElementById('stokInput').value = `Stok Roll : ${data.data.stock_roll}, Stok Kg : ${data.data.stock_kg}, Stok Rib : ${data.data.stock_rib}`;
     document.getElementById('gradeInput').value = data.data.grade;
     document.getElementById('skuInput').value = data.data.sku;

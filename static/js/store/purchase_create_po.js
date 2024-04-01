@@ -5,6 +5,24 @@ const PostPurchaseOrder = BaseUrl + UrlPostPurchaseOrder;
 const AllContact = BaseUrl + UrlGetAllContact;
 const AllWarehouseByToken = BaseUrl + UrlGetWarehouseByToken;
 
+// Mendengarkan peristiwa input pada elemen input harga
+const hargaBeliInput = document.getElementById('hargaBeliInput');
+hargaBeliInput.addEventListener('input', function(event) {
+    let inputNilai = event.target.value;
+    inputNilai = inputNilai.replace(/\./g, '');
+    inputNilai = inputNilai.replace(/\D/g, '');
+    inputNilai = parseInt(inputNilai);
+    inputNilai = formatCurrency(inputNilai);
+    event.target.value = inputNilai;
+});
+
+// Fungsi untuk memformat nilai menjadi format dengan separator ribuan
+function formatCurrency(amount) {
+    let amountString = String(amount).split('').reverse().join('');
+    let formattedAmount = amountString.replace(/(\d{3})(?=\d)/g, '$1.');
+    return formattedAmount.split('').reverse().join('');
+}
+
 async function addPreOrder(formData) {
     const fotoInput = document.getElementById('fotoInput').files[0];
     if (!fotoInput) {
@@ -29,7 +47,9 @@ async function addPreOrder(formData) {
         formDataObj.append('setting', formData.setting);
         formDataObj.append('gramasi', formData.gramasi);
         formDataObj.append('stock_roll', formData.stock_roll);
-        formDataObj.append('price', formData.price);
+        // Hapus semua karakter selain angka dari harga
+        const price = formData.price.replace(/\D/g, '');
+        formDataObj.append('price', price);
         formDataObj.append('stock_rib', formData.stock_rib);
         formDataObj.append('stock_kg', formData.stock_kg);
         formDataObj.append('attachment_image', fotoInput);
@@ -53,7 +73,7 @@ async function addPreOrder(formData) {
                 timer: 1500,
                 showConfirmButton: false
             }).then(() => {
-                window.location.href = 'purchase_po_view.html';
+                // window.location.href = 'purchase_po_view.html';
             });
         } else {
             // Handle failure
@@ -100,7 +120,7 @@ fetch(AllWarehouseByToken, requestOptionsGet)
     })
     .catch((error) => {
         console.error('Error fetching warehouse:', error);
-    });
+});
 
 // Event listener for submit button
 const submitButton = document.querySelector('#submitButton');

@@ -35,7 +35,10 @@ fetch(GetPurchaseOrderById, requestOptionsGet)
     // Populate form fields with data
     document.getElementById('nomorDoInput').value = data.data.no_do;
     document.getElementById('namaBarangInput').value = data.data.nama_barang;
-    document.getElementById('spesifikasiInput').value = `Ketebalan: ${data.data.ketebalan}, Setting: ${data.data.setting}, Gramasi: ${data.data.gramasi}`;
+    // document.getElementById('spesifikasiInput').value = `Ketebalan: ${data.data.ketebalan}, Setting: ${data.data.setting}, Gramasi: ${data.data.gramasi}`;
+    document.getElementById('ketebalanInput').value = data.data.ketebalan;
+    document.getElementById('settingInput').value = data.data.setting;
+    document.getElementById('gramasiInput').value = data.data.gramasi;
     document.getElementById('stokInput').value = `Stok Roll : ${data.data.stock_roll}, Stok Kg : ${data.data.stock_kg}, Stok Rib : ${data.data.stock_rib}`;
     document.getElementById('gradeInput').value = data.data.grade;
     document.getElementById('skuInput').value = data.data.sku;

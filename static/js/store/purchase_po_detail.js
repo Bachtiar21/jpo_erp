@@ -82,12 +82,13 @@ fetch(GetByIdPurchaseOrder, requestOptionsGet)
             // Set nilai-nilai PO ke dalam elemen HTML yang sesuai
             document.getElementById("nomorDoInput").value = purchaseOrderData.no_po;
             document.getElementById("namaBarangInput").value = purchaseOrderData.nama_barang;
-            document.getElementById('spesifikasiInput').value = `Ketebalan: ${purchaseOrderData.ketebalan}, Setting: ${purchaseOrderData.setting}, Gramasi: ${purchaseOrderData.gramasi}`;
+            document.getElementById('spesifikasiInput').value = `Ketebalan: ${purchaseOrderData.ketebalan} Cm, Setting: ${purchaseOrderData.setting} Inch, Gramasi: ${purchaseOrderData.gramasi}`;
             document.getElementById("gradeInput").value = purchaseOrderData.grade;
             document.getElementById("skuInput").value = purchaseOrderData.sku;
             document.getElementById("tanggalInput").value = purchaseOrderData.date;
             document.getElementById('deskripsiInput').value = purchaseOrderData.description;
-            document.getElementById('stokInput').value = `Stock Rev : ${purchaseOrderData.stock_roll_rev} Roll, ${purchaseOrderData.stock_kg_rev} Kg, Stock Rib Rev : ${purchaseOrderData.stock_rib_rev}`;
+            document.getElementById('stokInput').value = `Stock Roll : ${purchaseOrderData.stock_roll} Roll, Stok Kg : ${purchaseOrderData.stock_kg} Kg, Stock Rib : ${purchaseOrderData.stock_rib}`;
+            document.getElementById('stokInputRev').value = `Stock Roll : ${purchaseOrderData.stock_roll_rev} Roll, Stok Kg : ${purchaseOrderData.stock_kg_rev} Kg, Stock Rib : ${purchaseOrderData.stock_rib_rev}`;
             document.getElementById('hargaInput').value = purchaseOrderData.price;
             const imageElement = document.getElementById("fotoInput");
             imageElement.src = purchaseOrderData.attachment_image;
