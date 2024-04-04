@@ -1,10 +1,8 @@
 import {
   BaseUrl,
-  UrlGetAllBank,
   UrlGetCommissionById,
   UrlGetByIdContact,
   UrlPaidCommission,
-  UrlGetBankById,
   requestOptionsGet,
 } from "../controller/template.js";
 import { token } from "../controller/cookies.js";
@@ -13,9 +11,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id");
 const CommissionById = BaseUrl + UrlGetCommissionById + `/${id}`;
 const GetContactById = BaseUrl + UrlGetByIdContact;
-const AllBank = BaseUrl + UrlGetAllBank;
 const PaidCommission = BaseUrl + UrlPaidCommission + `/${id}/payment`;
-const GetBankById = BaseUrl + UrlGetBankById;
 
 let commissionData;
 
@@ -24,7 +20,6 @@ fetch(CommissionById, requestOptionsGet)
   .then((response) => response.json())
   .then((data) => {
     const brokerId = data.data.broker;
-    const bankId = data.data.bank_id;
     commissionData = data.data;
     const sellPrice = data.data.sell_price;
     const payment = data.data.payment;
@@ -42,21 +37,6 @@ fetch(CommissionById, requestOptionsGet)
           document.getElementById("vendorInput").value = contactName;
         }
     });
-
-    // Fetch data Rekening
-    fetch(GetBankById + `/${bankId}`, requestOptionsGet)
-      .then((response) => response.json())
-      .then((bankData) => {
-        if (bankData && bankData.data) {
-          const bankName = bankData.data.bank + "(" + bankData.data.no_rek + ")" + "-" + bankData.data.name_rek;
-          document.getElementById("rekeningNow").value = bankName;
-        }
-    });
-
-    if (data.data.bank_id !== null) {
-        document.getElementById("listRekening").setAttribute("hidden", "hidden");
-        document.getElementById("rekeningNow").removeAttribute("hidden");
-    }
 
     // Mendapatkan tanggal dari created_at
     const createdDate = new Date(data.data.created_at);
@@ -78,33 +58,14 @@ fetch(CommissionById, requestOptionsGet)
   })
   .catch((error) => console.error("Error:", error));
 
-// Fetch Data Rekening di Dropdown
-const dropdownRekening = document.getElementById("listRekening");
-fetch(AllBank, requestOptionsGet)
-  .then((response) => response.json())
-  .then((data) => {
-    data.data.forEach((bank) => {
-      const option = document.createElement("option");
-      option.value = bank.id;
-      option.textContent =
-        bank.bank + " - " + bank.name_rek + " - " + bank.no_rek;
-      dropdownRekening.appendChild(option);
-    });
-  })
-  .catch((error) => {
-    console.error("Error fetching banks:", error);
-  });
-
 // Paid Bill
 // Event listener untuk tombol "Submit Paid"
 const submitButton = document.querySelector("#submitButton");
 submitButton.addEventListener("click", () => {
-  const listRekening = document.getElementById("listRekening").value;
   const paymentInput = document.getElementById("paymentInput").value;
 
   const paidData = {
     paid_price: paymentInput,
-    bank_id: listRekening,
   };
 
   if (isDataChanged(commissionData, paidData)) {
@@ -116,8 +77,7 @@ submitButton.addEventListener("click", () => {
 // Fungsi untuk membandingkan apakah ada perubahan pada data
 function isDataChanged(existingData, paidData) {
   return (
-    existingData.paid_price !== paidData.paid_price ||
-    existingData.bank_id !== paidData.bank_id
+    existingData.paid_price !== paidData.paid_price
   );
 }
 // Fungsi untuk menampilkan alert konfirmasi perubahan data

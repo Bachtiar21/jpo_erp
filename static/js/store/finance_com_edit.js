@@ -2,7 +2,6 @@ import {
   BaseUrl,
   UrlGetCommissionById,
   UrlGetByIdContact,
-  UrlGetBankById,
   requestOptionsGet,
 } from "../controller/template.js";
 
@@ -10,14 +9,12 @@ const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id");
 const CommissionById = BaseUrl + UrlGetCommissionById + `/${id}`;
 const GetContactById = BaseUrl + UrlGetByIdContact;
-const GetBankById = BaseUrl + UrlGetBankById;
 
 // Fetch Data Convection
 fetch(CommissionById, requestOptionsGet)
   .then((response) => response.json())
   .then((data) => {
     const brokerId = data.data.broker;
-    const bankId = data.data.bank_id;
     const sellPrice = data.data.broker_fee;
     const payment = data.data.payment;
     const remainingPayment = sellPrice - payment;
@@ -32,16 +29,6 @@ fetch(CommissionById, requestOptionsGet)
         if (contactData && contactData.data) {
           const contactName = contactData.data.name;
           document.getElementById("vendorInput").value = contactName;
-        }
-    });
-
-    // Fetch data Rekening
-    fetch(GetBankById + `/${bankId}`, requestOptionsGet)
-      .then((response) => response.json())
-      .then((bankData) => {
-        if (bankData && bankData.data) {
-          const bankName = bankData.data.bank + "(" + bankData.data.no_rek + ")" + "-" + bankData.data.name_rek;
-          document.getElementById("rekeningInput").value = bankName;
         }
     });
 
